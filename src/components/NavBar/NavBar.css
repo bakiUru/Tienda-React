@@ -1,0 +1,17 @@
+.tituloTienda{
+text-align: center;
+margin: 1rem;
+
+}
+
+.ContendorTitulo{
+    background-color: aqua;
+}
+
+
+@media only screen and (max-width: 990px)  {
+    .ContendorTitulo{
+        background-color: rgb(54, 14, 163);
+        display: flex;
+    }
+}
