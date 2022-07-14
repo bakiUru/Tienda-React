@@ -1,63 +1,55 @@
 import * as React from "react";
-import IMGS from "../../Utils/Img";
-import { Col } from "react-bootstrap";
+import IMGS from "../../assests/Utils/Img"
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import { LogUserBtn } from "../LogUserBtn/LogUserBtn";
 import './NavBar.css';
+
+
+
+
 
 export function NavBar() {
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar className="navSae"  expand="lg">
       <Container fluid>
         <Navbar.Brand href="#">
-          <img src={IMGS.imgLogo} alt="Logo SAE" />
+          <img className="imgLogo" src={IMGS.imgLogo.img} alt={IMGS.imgLogo.name} />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
             className="me-auto my-2 my-lg-0"
-            style={{ maxHeight: "100px" }}
             navbarScroll
           >
-            <Nav.Link href="#action1">Home</Nav.Link>
-            <Nav.Link href="#action2">Link</Nav.Link>
-            <NavDropdown title="Link" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action4">
-                Another action
-              </NavDropdown.Item>
+            <Nav.Link href="#action1">SAE</Nav.Link>
+            <Nav.Link href="#action2">Informacion</Nav.Link>
+            <NavDropdown title="Productos" id="navbarScrollingDropdown">
+              <NavDropdown.Item href="#action3">Insumos Riego</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="#action5">
-                Something else here
-              </NavDropdown.Item>
+              <NavDropdown.Item href="#action4">Servicios SAE</NavDropdown.Item>
             </NavDropdown>
           </Nav>
-          <Container className="ContendorTitulo">
-            <p className ="tituloTienda">HOLA ESTAS ES LA TIENDA DE SAE -- Riego --</p>
+          <Container className="ContenedorTitulo">
+            <h1 class='insetshadow'>SAE - StoRe</h1>
           </Container>
+
           <Form className="d-flex">
             <Form.Control
               type="search"
-              placeholder="Search"
+              placeholder="Buscar"
               className="me-2"
-              aria-label="Search"
+              aria-label="Buscar"
             />
-            <Button variant="outline-success">Search</Button>
-            <Container fluid hola>
-              <Col>
-                <Button variant="outline-primary" size="sm">
-                  Loggin
-                </Button>{" "}
-                <Button variant="outline-warning" size="sm">
-                  Sing Up
-                </Button>{" "}
-              </Col>
-            </Container>
+            <Button variant="success">Buscar</Button>
+
           </Form>
+          <LogUserBtn/>
+
         </Navbar.Collapse>
       </Container>
     </Navbar>
