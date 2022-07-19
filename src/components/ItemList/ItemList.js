@@ -5,15 +5,20 @@ import { ItemBag } from "../ItemBag/ItemBag";
 import IMGS from "../../assests/Utils/Img";
 
 
-export function ItemList(props) {
+
+export function ItemList() {
+  
   return (
     <Container>
       <Card style={{ width: "18rem" }}>
         <Card.Img variant="top" src={IMGS.imgHunter.img[0]} alt={IMGS.imgHunter.name} />
         <Card.Body>
+          
           <Card.Title>{IMGS.imgHunter.title}</Card.Title>
+          <hr></hr>
           <Card.Text>{IMGS.imgHunter.description}</Card.Text>
-         <ItemBag/>
+          <hr></hr>
+         <ItemBag stock={10} init={1}/>
         </Card.Body>
       </Card>
     </Container>

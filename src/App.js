@@ -6,15 +6,19 @@ import { ItemList } from './components/ItemList/ItemList';
 import './App.css';
 
 
+
 function App() {
   return (
     <div className="App">
       <header className="App-header">
         <NavBar/>
       </header>
+      <section className="App-body">
       <Container className='spaceContainer'>
         <ItemList/>
       </Container>
+      </section>
+
  
     </div>
   );

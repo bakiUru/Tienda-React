@@ -36,7 +36,7 @@ export function NavBar() {
             </NavDropdown>
           </Nav>
           <Container className="ContenedorTitulo">
-            <h1 class='insetshadow'>SAE - StoRe</h1>
+            <h1 class='insetshadow'>- SAE - StoRe</h1>
           </Container>
           <CartWidget/>
           <Form className="d-flex">

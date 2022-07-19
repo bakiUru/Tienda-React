@@ -7,58 +7,99 @@ import Tooltip from 'react-bootstrap/Tooltip';
 import { BsBagFill } from "react-icons/bs";
 import "./ItemBag.css";
 
-let stock = 20;
 
-export function ItemBag() {
+
+export function ItemBag(props) {
+  //HOOKS
     const [show, setShow] = React.useState(false);
     const target = React.useRef(null);
-    const [count, setCount] = React.useState(0);
+    const [count, setCount] = React.useState(props.init);
 
-  const addBag = () => {
-    if (count < stock)
-        setCount(count + 1);
-    else{
 
-        console.log("NO Hay Stock")
+  React.useEffect(()=>{
+
+    //Desactivo butn de resta y Agregar Carrito
+    if(count===0)
+    {
+      
+      document.getElementById('bagBtnAddCart').toggleAttribute('disabled',true);
+      document.getElementById('remBtn').toggleAttribute('disabled',true);
     }
+      
+    else
+    {
+      document.getElementById('remBtn').toggleAttribute('disabled',false);
+      document.getElementById('bagBtnAddCart').toggleAttribute('disabled',false);
+    }
+      
+    //Desactivo butn de suma al limite de STOCK
+    if(count===props.stock)
+      document.getElementById('addBtn').toggleAttribute('disabled',true);
+    else
+      document.getElementById('addBtn').toggleAttribute('disabled',false);
+
+  },[count]);
+
+  //Agrega a la Bolsa un item
+  const addBag = () => {
+    if (count < props.stock)
+      setCount(count + 1);
+      
+  
+    else
+        console.log("NO Hay Stock")
         
   };
-
+ //quita de la Bolsa un item
   const remBag = () => {
     setCount(count - 1);
     if (count === 0)
-        setCount(0);
-  };
+      setCount(0);
+    
+        
 
+  };
+//Limpia la Bolsa
   const delBag = ()=>{
     if (count !== 0){
         setCount(0);
         setShow(!show);    
     }
   }
+//envia al carro
+  const sendBag = ()=>{
+        setCount(0);
+        console.log("Enviado al Carro!!!");   
+    }
+  
   return (
     
     <Container className="contBtn" ref={target}>
-      <Button variant="primary" className="bagBtn" onClick={addBag}>
-        Agregar
+      <Button id='addBtn'variant="primary" className="bagBtn" onClick={addBag}>
+        +
       </Button>
-      <Button variant="primary" className="bagBtn" onClick={remBag}>
-        Quitar
-      </Button>
-
       <Button className="bagBtn" variant="outline-light"  onClick={delBag}>
-        <BsBagFill className="cartIcon" />
+        <BsBagFill    className="cartIcon" />
         <Badge pill bg="warning" text="dark">
           {count}
         </Badge>
       </Button>
+      <Button id='remBtn' variant="primary" className="bagBtn" onClick={remBag}>
+        -
+      </Button>
+
+      
       <Overlay target={target.current} show={show} placement="right">
         {(props) => (
           <Tooltip id="overlay-example" {...props}>
             ¡Vacía!
           </Tooltip>
                   )}
-                  </Overlay>
+       </Overlay>
+
+       <Button id='bagBtnAddCart' variant="primary" className="bagBtnAddCart" onClick={sendBag}>
+        Agregar al Carrito
+      </Button>
     </Container>
   );
 }
