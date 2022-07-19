@@ -1,0 +1,14 @@
+.bagBtn{
+    margin-left: 1rem;
+}
+
+.contBtn{
+    padding: 0.5rem;
+    display: flex;
+    flex-wrap: nowrap;
+    align-content: flex-end;
+    align-items: center;
+    flex-direction: row;
+    justify-content: flex-end;
+    background-color: grey;
+}

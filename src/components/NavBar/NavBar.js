@@ -7,6 +7,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { LogUserBtn } from "../LogUserBtn/LogUserBtn";
+import { CartWidget } from "../CartWidget/CartWidget";
 import './NavBar.css';
 
 
@@ -37,7 +38,7 @@ export function NavBar() {
           <Container className="ContenedorTitulo">
             <h1 class='insetshadow'>SAE - StoRe</h1>
           </Container>
-
+          <CartWidget/>
           <Form className="d-flex">
             <Form.Control
               type="search"
