@@ -6,19 +6,18 @@ import { ItemList } from './components/ItemList/ItemList';
 import './App.css';
 
 
-
-
 function App() {
+const  ItemTitle = "Productos Destacados de la Semana";
+   
 
   return (
     <div className="App">
       <header className="App-header">
         <NavBar />
       </header>
-      
       <section className="App-body">
       <Container className='spaceContainer'>
-        <ItemList />
+        <ItemList ItemTitle = {ItemTitle} />
       </Container>
       </section>
 
