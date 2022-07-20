@@ -7,15 +7,18 @@ import './App.css';
 
 
 
+
 function App() {
+
   return (
     <div className="App">
       <header className="App-header">
-        <NavBar/>
+        <NavBar />
       </header>
+      
       <section className="App-body">
       <Container className='spaceContainer'>
-        <ItemList/>
+        <ItemList />
       </Container>
       </section>
 

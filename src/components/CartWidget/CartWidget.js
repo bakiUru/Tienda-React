@@ -6,11 +6,20 @@ import './CartWidget.css'
 
 
 
-export function CartWidget (){
+export function CartWidget (props){
+    const changeCart = props.countCart();
+    const [countCart, setCountCart] = React.useState('');
+ 
+    React.useEffect(()=>{
+        setCountCart(changeCart);
+
+    },[countCart])
+    
+
     return (
         <div >
-                    <Button className="cartBtn" variant="outline-light">
-            <AiOutlineShoppingCart className="cartIcon"/><Badge pill bg="warning" text="dark">9</Badge>
+        <Button className="cartBtn" variant="outline-light">
+            <AiOutlineShoppingCart className="cartIcon"/><Badge pill bg="warning" text="dark">{countCart}</Badge>
       </Button>
         </div>
 

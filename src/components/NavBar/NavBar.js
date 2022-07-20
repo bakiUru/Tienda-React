@@ -14,7 +14,13 @@ import './NavBar.css';
 
 
 
-export function NavBar() {
+export function NavBar(props) {
+
+
+  const countCart=()=>{
+    console.log("LLEGO!")
+    return 15;
+  }
   return (
     <Navbar className="navSae"  expand="lg">
       <Container fluid>
@@ -38,7 +44,7 @@ export function NavBar() {
           <Container className="ContenedorTitulo">
             <h1 class='insetshadow'>- SAE - StoRe</h1>
           </Container>
-          <CartWidget/>
+          <CartWidget countCart={countCart}/>
           <Form className="d-flex">
             <Form.Control
               type="search"

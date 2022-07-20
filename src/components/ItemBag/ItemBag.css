@@ -21,3 +21,6 @@
         border-radius: 10%;
     
 }
+.tooltip{
+    --bs-tooltip-arrow-height:0;
+}

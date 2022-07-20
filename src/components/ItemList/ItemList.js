@@ -7,7 +7,10 @@ import IMGS from "../../assests/Utils/Img";
 
 
 export function ItemList() {
-  
+  const onAdd = (count) =>{
+    console.log(`Se Enviaron ${count} Al Carro`);
+    return count;
+  }
   return (
     <Container>
       <Card style={{ width: "18rem" }}>
@@ -18,7 +21,7 @@ export function ItemList() {
           <hr></hr>
           <Card.Text>{IMGS.imgHunter.description}</Card.Text>
           <hr></hr>
-         <ItemBag stock={10} init={1}/>
+         <ItemBag stock={10} init={1} onAdd={onAdd}/>
         </Card.Body>
       </Card>
     </Container>
