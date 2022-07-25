@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, {useEffect, useState, useRef} from 'react';
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/esm/Container";
 import Badge from "react-bootstrap/esm/Badge";
@@ -9,14 +9,13 @@ import "./ItemBag.css";
 
 export function ItemBag(props) {
   //HOOKS
-  const [show, setShow] = React.useState(false);
-  const target = React.useRef(null);
-  const [count, setCount] = React.useState(props.init);
+  const [show, setShow] = useState(false);
+  const target = useRef(null);
+  const [count, setCount] = useState(props.init);
 
-  React.useEffect(() => {
+  useEffect(() => {
     //Desactivo butn de resta y Agregar Carrito
-    if (count === 0) {
-      document
+    if (count === 0) {     document
         .getElementById("bagBtnAddCart")
         .toggleAttribute("disabled", true);
       document.getElementById("remBtn").toggleAttribute("disabled", true);
@@ -34,7 +33,7 @@ export function ItemBag(props) {
   }, [count]);
 
   //Limpio el Efecto del tooltip
-  React.useEffect(() => {
+  useEffect(() => {
     setTimeout(() => {
       setShow(false);
     }, 1000);

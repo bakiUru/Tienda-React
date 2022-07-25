@@ -1,0 +1,43 @@
+[
+  {
+    "id": 1,
+    "nameTitle": "Aspersores PGP Hunter",
+    "description": "l PGP de Hunter es el aspersor de turbina residencial y comercial más vendido del mundo, que ha fijado los estándares de toda la industria del riego profesional.",
+    "price": 300,
+    "stock": 50,
+    "imgSrc": "img/aspersor-hunter-serie-pgp.jpg"
+  },
+  {
+    "id": 2,
+    "nameTitle": "Hunter Aspersor i-40",
+    "description": "Con la fuerza de acero inoxidable, la i-40 está construido para durar en los deportes, parque público más severos y entornos comerciales Si eficiencia, eficaz de riego y resultados hermosos son el lente, la i-40 es la solución de riego profesional de la mejor",
+    "price": 1100,
+    "stock": 30,
+    "imgSrc": "img/aspersor-depor.jpg"
+  },
+  {
+    "id": 3,
+    "nameTitle": "Boquilla Hunter MP3000",
+    "description": "boquillas de pulverización rotadora MP | Radio de 22 a 30 pies | Arco ajustable de 90 a 210 grados | Rosca hembra",
+    "price": 50,
+    "stock": 200,
+    "imgSrc": "img/boquillasMP3000.jpg"
+  },
+  {
+    "id": 4,
+    "nameTitle": "Hunter Sprinkler XC800 X-Core 8-Station",
+    "description": "controlador residencial de nivel de entrada de trabajo duro. X-Core está en el caso. El popular controlador XC de Hunter es ahora X-Core.",
+    "price": 5000,
+    "stock": 10,
+    "imgSrc": "img/ControladorHunter.jpg"
+  },
+  {
+    "id": 5,
+    "nameTitle": "Galcon YLZ Válvula de globo solenoide ",
+    "description": "Válvula de control de riego en línea con control de flujo de plástico reforzado ideal para riego por goteo, invernadero residencial y pequeños sitios comerciales.",
+    "price": 800,
+    "stock": 40,
+    "imgSrc": "img/valvulaSolenoideGlobo.jpg"
+  }
+]
+

@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, {useEffect, useState} from 'react';
 import Button from "react-bootstrap/esm/Button";
 import Badge from 'react-bootstrap/Badge';
 import {AiOutlineShoppingCart}  from 'react-icons/ai';
@@ -8,9 +8,9 @@ import './CartWidget.css'
 
 export function CartWidget (props){
     const changeCart = props.countCart();
-    const [countCart, setCountCart] = React.useState('');
+    const [countCart, setCountCart] = useState('');
  
-    React.useEffect(()=>{
+    useEffect(()=>{
         setCountCart(changeCart);
 
     },[countCart])

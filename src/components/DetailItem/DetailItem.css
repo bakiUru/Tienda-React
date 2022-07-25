@@ -1,0 +1,22 @@
+.contDtl{
+    display: flex;
+    flex-direction: column;
+}
+
+.detailBtn{
+    background-color: #48494b;
+    border: white;
+}
+
+.detailBtn:hover{
+    background-color: #254c74;
+    border: white;
+}
+
+.detailBtn:active{
+    background-color: #254c74;
+}
+
+.detailBtn:disabled{
+    background-color: #254c74;
+}

@@ -1,6 +1,6 @@
-import imgLogo from '../img/logo.png';
-import imgHunter from '../img/aspersor-hunter-serie-pgp.jpg';
-import imgHunter2 from '../img/aspersor-hunter-serie-pgp-work.jpg';
+import imgLogo from '../../img/logo.png';
+import imgHunter from '../../img/aspersor-hunter-serie-pgp.jpg';
+import imgHunter2 from '../../img/aspersor-hunter-serie-pgp-work.jpg';
 
 
 const IMGS = {

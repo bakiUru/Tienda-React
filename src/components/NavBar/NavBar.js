@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from 'react';
 import IMGS from "../../assests/Utils/Img"
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
