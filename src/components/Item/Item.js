@@ -20,7 +20,7 @@ export function Item({id, nameTitle,description,price,stock,imgSrc}) {
         {  console.log()}
           <Card.Title>{nameTitle}</Card.Title>
           <hr></hr>
-            <DetailItem description={description}></DetailItem>
+            <DetailItem nameTitle={nameTitle} description={description}></DetailItem>
           <hr></hr>
          <ItemBag stock={stock} id={id} init={1} onAdd={onAdd}/>
          <hr></hr>

@@ -3,24 +3,29 @@ import Container from "react-bootstrap/esm/Container";
 import { Item } from "../Item/Item"
 import './ItemList.css'
 
+//Agrego el div con el efecto de preCarga
+const preLoad = () =>{
+  let bodyItem = document.getElementById('contItems');
+  document.addEventListener("DOMContentLoaded", ()=>{
+    bodyItem.setAttribute("class","loader")
+  })  
+}
+//Quito el Div
+const postLoad = () => document.getElementById('contItems').removeAttribute("class")  
+
+  
+
 
 
 
 export function ItemList({ItemTitle}) {
+  const [load,setLoad] = useState(false);
   const [listItem, setListItem] = useState([]);
-  let conItems = document.getElementById('contItems');
- 
 
-  const preLoader = () =>{
-    document.addEventListener("DOMContentLoaded", ()=>{
-      let preloader = document.createElement("<div class='loader'></div>");
-      conItems.innerHTML=preloader;
-    })
-    
-  }
 
 useEffect(()=>{
-  //preLoader();
+  
+  preLoad();
     setTimeout(()=>{
       //Recupero la informacion de los productos
       //Colgue el archivo en mi servidor web
@@ -30,8 +35,12 @@ useEffect(()=>{
          return res.json();
       }).then((json)=>{
         if(json.length === 0)
-        console.log("Vacio")
-       // conItems.appendChild('<p>Sin Datos</p>');
+        {
+          console.log("Vacio")
+          // conItems.appendChild('<p>Sin Datos</p>');
+          setListItem([]);
+        }
+
         else{
           //conItems.appendChild('<p>Sin Datos</p>');
           setListItem(json);
@@ -42,20 +51,21 @@ useEffect(()=>{
       })
     
       },2000)
-  
-
-
+     
+     
 },[]);
 
 
   return (
     <>
     <h3>{ItemTitle}</h3>
-    <Container id='contItems' className='contListItem' >
+    <div id='contItems'></div>
+    <Container  className='contListItem' onLoad={postLoad}>
       {listItem.map((item)=>{
        return <Item key={item.id} {...item}></Item>
       })}
     </Container>
+    
     </>
   );
 }
