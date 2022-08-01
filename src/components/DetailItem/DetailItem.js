@@ -1,7 +1,9 @@
-import React, {useEffect,useState} from 'react';
+import React, {useState} from 'react';
+
 import Container from "react-bootstrap/esm/Container";
 import Button from "react-bootstrap/esm/Button";
 import Modal from 'react-bootstrap/Modal';
+import { NavLink } from 'react-router-dom';
 import './DetailItem.css'
 
 function DetailModal(props) {
@@ -24,13 +26,17 @@ function DetailModal(props) {
         </p>
       </Modal.Body>
       <Modal.Footer>
+        <NavLink to={`/detalles/${props.id}`}  className='btn btn-primary'>Ver Producto
+        </NavLink>
         <Button onClick={props.onHide}>Cerrar</Button>
+        
+    
       </Modal.Footer>
     </Modal>
   );
 }
 
-export function DetailItem({nameTitle , description}){
+export function DetailItem({nameTitle , description, id}){
     const [modalShow, setModalShow] = useState(false);
 
     return (
@@ -42,6 +48,7 @@ export function DetailItem({nameTitle , description}){
         </Container>
 
         <DetailModal 
+        id={id}
         nameTitle={nameTitle}
         description={description}
         show={modalShow}

@@ -3,41 +3,124 @@
     "id": 1,
     "nameTitle": "Aspersores PGP Hunter",
     "description": "l PGP de Hunter es el aspersor de turbina residencial y comercial más vendido del mundo, que ha fijado los estándares de toda la industria del riego profesional.",
+    "category": "Aspersor",
     "price": 300,
     "stock": 50,
-    "imgSrc": "img/aspersor-hunter-serie-pgp.jpg"
+    "apply": ["Residenciales "],
+    "imgSrc": "aspersor-hunter-serie-pgp.jpg",
+    "imgDsc": "Aspersores Hunter."
+
   },
   {
     "id": 2,
     "nameTitle": "Hunter Aspersor i-40",
     "description": "Con la fuerza de acero inoxidable, la i-40 está construido para durar en los deportes, parque público más severos y entornos comerciales Si eficiencia, eficaz de riego y resultados hermosos son el lente, la i-40 es la solución de riego profesional de la mejor",
+    "category": "Aspersor",
     "price": 1100,
     "stock": 30,
-    "imgSrc": "img/aspersor-depor.jpg"
+    "apply": ["Deportivo ","Profesional "],
+    "imgSrc": "aspersor-depor.jpg",
+    "imgDsc": "Aspersores profesionales Hunter."
   },
   {
     "id": 3,
     "nameTitle": "Boquilla Hunter MP3000",
     "description": "boquillas de pulverización rotadora MP | Radio de 22 a 30 pies | Arco ajustable de 90 a 210 grados | Rosca hembra",
+    "category": "Accesorio",
     "price": 50,
     "stock": 200,
-    "imgSrc": "img/boquillasMP3000.jpg"
+    "apply": ["Deportivo ","Profesional "],
+    "imgSrc": "boquillasMP3000.jpg",
+    "imgDsc": "Boquillas para Aspersores Hunter."
   },
   {
     "id": 4,
     "nameTitle": "Hunter Sprinkler XC800 X-Core 8-Station",
     "description": "controlador residencial de nivel de entrada de trabajo duro. X-Core está en el caso. El popular controlador XC de Hunter es ahora X-Core.",
+    "category": "Automatismo",
     "price": 5000,
     "stock": 10,
-    "imgSrc": "img/ControladorHunter.jpg"
+    "apply": ["Residencial ","Deportivo ","Agro "],
+    "imgSrc": "ControladorHunter.jpg",
+    "imgDsc": "Controlador residencial de nivel de entrada. Hunter Sprinkler"
   },
   {
     "id": 5,
     "nameTitle": "Galcon YLZ Válvula de globo solenoide ",
     "description": "Válvula de control de riego en línea con control de flujo de plástico reforzado ideal para riego por goteo, invernadero residencial y pequeños sitios comerciales.",
+    "category": "Valvulas",
     "price": 800,
     "stock": 40,
-    "imgSrc": "img/valvulaSolenoideGlobo.jpg"
+    "apply": ["Deportivo ","Residencial ","Agro "],
+    "imgSrc": "valvulaSolenoideGlobo.jpg",
+    "imgDsc": "Electrovalvula Galcon para Suministro de reigo."
+  },
+  {
+    "id": 6,
+    "nameTitle": "Hunter ProSpray ",
+    "description": "Los aspersores Hunter Pro-Spray están diseñados para garantizar un rendimiento fiable y duradero en aplicaciones residenciales. Los aspersores altamente duraderos ofrecen un muelle de alta resistencia, un sello resistente al cloro, un diseño exclusivo de tapa de cuerpo que no se fuga, incluso cuando se suelta, y un trinquete de dos piezas que es fácil de ajustar. Los aspersores Pro-Spray son compatibles con todas las boquillas ajustables Hunter Pro, boquillas fijas Pro y boquillas de rotador MP. Todos los modelos también incluyen una tapa de fácil manejo para mantener fuera los desechos y evitar obstrucciones. Los aspersores Pro-Spray también son compatibles con todas las boquillas hembra estándar de la industria, ofreciendo un alto grado de flexibilidad.",
+    "category": "Aspersor",
+    "price": 200,
+    "stock": 140,
+    "apply": ["Residencial ","Agro "],
+    "imgSrc": "aspersorHunterPRO.jpg",
+    "imgDsc": "Aspersor Hunter ProSpray"
+  },
+  {
+    "id": 7,
+    "nameTitle": "MPTOOL RainBird ",
+    "description": "Paquete de herramientas de ajuste para llave cazadora y rotor.",
+    "category": "Accesorio",
+    "price": 300,
+    "stock": 340,
+    "apply": ["Deportivo ","Residencial ","Agro "],
+    "imgSrc": "herramientasRainBird.jpg",
+    "imgDsc": "Paquete de Herramientas para boquillas de aspersores Rain Bird, y otras marcas."
+  },
+  {
+    "id": 8,
+    "nameTitle": "Rain-Bird ESP-TM2",
+    "description": "El controlador de riego ESP-TM2 es la opción perfecta para soluciones residenciales básicas. Basándose en el legado de Rain Bird del uso inteligente del agua, este controlador ofrece características simples de ahorro de agua que realmente utilizarás. Con la flexibilidad de 3 programas y 4 horas de inicio disponibles por programa, puedes adaptar tu horario de riego a las necesidades de tu paisaje. El ESP-TM2 proporciona la interfaz de programación extra simple con la que estás familiarizado en un controlador que está diseñado para durar. Lo mejor de todo es que el ESP-TM2 viene con un nuevo módulo LNK WiFi para que el sistema sea compatible con dispositivos móviles sin tener que reemplazar toda la unidad.",
+    "category": "Automatismo",
+    "price": 4500,
+    "stock": 12,
+    "apply": ["Deportivo ","Residencial ","Agro "],
+    "imgSrc": "controladorRB.jpg",
+    "imgDsc": "Controlador de Riego Rian Bird, Automatismo inteligente"
+  },
+  {
+    "id": 9,
+    "nameTitle": "Hunter PGV-ASV ",
+    "description": "La válvula antisifón Hunter PGV-ASV ofrece un rendimiento de calidad profesional para aplicaciones de paisaje comunes. Con control de flujo incorporado, el PGV-ASV está construido para manejar los rigores de la mayoría de los sitios residenciales y comerciales ligeros. Cuando el trabajo requiere una válvula dinámica y trabajadora que funcione perfectamente todos los días, elija el PGV-ASV.",
+    "category": "Valvulas",
+    "price": 880,
+    "stock": 50,
+    "apply": ["Deportivo ","Residencial ","Agro "],
+    "imgSrc": "valvulaHunter.jpg",
+    "imgDsc": "Electro Valvula para corte de Riego Hunter"
+  },
+  {
+    "id": 10,
+    "nameTitle": "AMT Pump 1/2HP",
+    "description": "Esta bomba centrífuga recta AMT tiene una carcasa de hierro fundido con un puerto de descarga que gira en incrementos de 90 grados para una instalación flexible. La carcasa de la bomba tiene un impulsor autolimpiante que maneja semisólidos de hasta 1/8 de diámetro, un tapón de llenado y drenaje para facilitar el mantenimiento, un diseño de extracción de la parte posterior para el mantenimiento sin molestar ninguna conexión de carcasa de la bomba, y el sello mecánico buna-n y junta tórica. La caja del motor es TEFC (totalmente cerrada, refrigerada por ventilador) para la protección contra el polvo y el aerosol de agua indirecto y cumple con la norma Nacional de Fabricantes Eléctricos (NEMA) 56J para dimensiones de montaje. Esta bomba requiere succión inundada para cebado y es adecuada para su uso en aplicaciones como transferencia de líquidos y recirculación.",
+    "category": "Bombas",
+    "price": 1800,
+    "stock": 5,
+    "apply": ["Residencial "],
+    "imgSrc": "bomba_1_2.jpg",
+    "imgDsc": "Bomba centrífuga recta AMT de Pulgada y media"
+  },
+  {
+    "id": 11,
+    "nameTitle": "AMT Pump 3HP",
+    "description": "Esta bomba centrífuga recta de acero inoxidable AMT tiene un puerto de succión NPT hembra de 2' y un puerto de descarga NPT de 1-1/2'. La carcasa de la bomba tiene un impulsor autolimpiante que maneja semi-sólidos de hasta 1/8 de diámetro, un tapón de llenado y drenaje para facilitar el mantenimiento, un puerto de descarga que gira a incrementos de 90 grados para una instalación flexible, y Viton (FKM, fluoroelastómero) sello mecánico y junta tórica para resistencia a la corrosión y productos químicos. La caja del motor es TEFC (totalmente cerrada, refrigerada por ventilador) para la protección contra el polvo y el aerosol de agua indirecto y cumple con la norma Nacional de Fabricantes Eléctricos (NEMA) 56J para dimensiones de montaje. Esta bomba resistente a la corrosión requiere succión inundada para cebado y es adecuada para su uso en aplicaciones como transferencia de líquidos y recirculación.",
+    "category": "Bombas",
+    "price": 3200,
+    "stock": 8,
+    "apply": ["Deportivo ","Residencial ","Agro "],
+    "imgSrc": "bomba3.jpg",
+    "imgDsc": "Bomba centrífuga recta AMT de 3 Pulgadas"
   }
+  
 ]
 
