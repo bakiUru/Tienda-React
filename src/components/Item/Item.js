@@ -4,15 +4,26 @@ import { ItemBag } from "../ItemBag/ItemBag";
 import { DetailItem } from '../DetailItem/DetailItem';
 import IMGS from "../../assests/Utils/Img";
 import './Item.css'
-const path = require('path');
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+
+const MyAlert = withReactContent(Swal);
+const showSwan = (count) =>{
+  
+  MyAlert.fire(  'Se enviaron',
+  <p>$count</p>+' Al carro',
+  'success')
+}
 
 const srverImg = "https://saeriego.tech/";
 
 
-export function Item({id, nameTitle,description,price,stock,imgSrc,countCart}) {
+export function Item({id, nameTitle,description,price,stock,imgSrc}) {
 
-      //Actualizo Stock
-      const [stockItem, setStockItem] = useState(stock);
+    //Actualizo Stock
+    const [stockItem, setStockItem] = useState(stock);
+    const [countCart, setCountCart] = useState(0);
+
   
   const updateStock =(upStock)=>{
     setStockItem(upStock);
@@ -20,11 +31,12 @@ export function Item({id, nameTitle,description,price,stock,imgSrc,countCart}) {
 
   const onAdd = (count) =>{
     console.log(`Se Enviaron ${count} Al Carro`);
+    setCountCart(count);
     return count;
   }
 
   useEffect(()=>{
-
+    
   },[stockItem])
   return (
   

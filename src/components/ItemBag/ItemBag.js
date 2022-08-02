@@ -20,6 +20,7 @@ export function ItemBag({ onAdd, init, id, stock, updateStock }) {
   console.log("Stock recibido", stock);
   console.log("Stock seteado", stockItem);
   console.log(typeof stock);
+
   useEffect(() => {
     //Desactivo butn de resta y Agregar Carrito
     if (count === 0) {

@@ -12,6 +12,12 @@ import { Nav } from "react-bootstrap";
 
 const URLproducts = "https://saeriego.tech/itemsData.json";
 const srverImg = "https://saeriego.tech/";
+
+
+
+
+
+
 export function ItemDetailContainer() {
   const [itemDetail, setItemDetail] = useState([]);
   const { itemId } = useParams();
@@ -20,6 +26,7 @@ export function ItemDetailContainer() {
   //Actualizo Price
   const [itemPrice, setItemPrice] = useState(itemDetail.price);
   const [cantCart, setCantCart] = useState(0);
+ 
 
   console.log(typeof itemId);
   const getIdItem = (itemId) => {
@@ -38,7 +45,7 @@ export function ItemDetailContainer() {
 
   useEffect(() => {
     getIdItem(itemId);
-
+    
     setStockItem(itemDetail.stock);
   }, [itemId]);
 
@@ -54,6 +61,7 @@ export function ItemDetailContainer() {
 
   const onAdd = (count) => {
     console.log(`Se Enviaron ${count} Al Carro`);
+    setCantCart(count);
     return count;
   };
 

@@ -1,7 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import Container from "react-bootstrap/esm/Container";
 import { Item } from "../Item/Item";
 import "./ItemList.css";
+
+//Guardo Las categorias en el localStorage para capturarla renderizarla con el boton filtrar
+const catchCategory=(data)=>{
+  let dataCategory = data.map((cat)=>cat.category)
+  console.log (dataCategory);
+}
 
 //Agrego el div con el efecto de preCarga
 const preLoad = () => {
@@ -34,6 +40,7 @@ export function ItemList({ ItemTitle, countCart }) {
           } else {
             //conItems.appendChild('<p>Sin Datos</p>');
             setListItem(json);
+            catchCategory(json);
           }
         })
         .catch((rej) => {
@@ -50,7 +57,9 @@ export function ItemList({ ItemTitle, countCart }) {
 
   return (
     <>
+
       <h3 className="titlePage">{ItemTitle}</h3>
+
       <div id="contItems"></div>
       <Container className="contListItem" onLoad={postLoad}>
         {listItem.map((item) => {

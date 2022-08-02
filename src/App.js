@@ -7,6 +7,7 @@ import { ItemList } from "./components/ItemList/ItemList";
 import { ItemDetailContainer } from "./components/ItemDetailContainer/ItemDetailContainer";
 import titleData from "../src/assests/Utils/title.json";
 import "./App.css";
+import { FilterBtn } from "./components/FilterBtn/FilterBtn";
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
         </header>
         <section className="App-body">
           <Container className="spaceContainer">
+            <FilterBtn/>
             <Routes>
               
               <Route
