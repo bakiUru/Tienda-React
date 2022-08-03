@@ -1,43 +1,53 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
+import { Link } from "react-router-dom";
 import './FilterBtn.css'
 
 const handleCategory = () => {
   let category = localStorage.getItem("category");
-  category = category.split(",");
-return category
+  if (category ==='') 
+     document.getElementsByClassName('optionSelect').toggleAttribute("disabled", true);
+  else
+   category = category.split(",");
+  return category
 };
 
 export function FilterBtn() {
   const [categor, setCategor] = useState(handleCategory);
-  const [valueCat, setValueCat] = useState(handleCategory);
-
-  const hadleSelection= () =>{
-
+  const [valueCat, setValueCat] = useState('');
+  let navigate= useNavigate();
+  
+  const handleSelection = (e) => {
+    let elemnt = e.target;
+    setValueCat(elemnt.getAttribute('value'));
+    alert(elemnt.getAttribute('value'))
+    console.log(elemnt.getAttribute('value'))
+    navigate('/category/'+valueCat, {replace: true});
   }
-console.log(categor)
+
   useEffect(() => {
-       
+    
   }, [categor]);
 
   return (
-    
-    <DropdownButton align="start" title="Filtrar" id="dropdown-menu-align-end">
-      <select>
-      <option>Selecciones un Opcion</option>
-     
-      {
-          categor.map((cat, index) => 
 
-            <option className="optionSelect" key={index} value={cat}>{cat}</option>
+    <DropdownButton align="start" title="Filtrar" id="dropdown-menu-align-end">
+      
+        
+
+        {
+          categor.map((cat, index) =>
+
+            <Dropdown.Item  onClick={handleSelection} key={index} value={cat}>{cat}</Dropdown.Item>
           )
 
 
-      }
-      </select>
+        }
+    
       <Dropdown.Divider />
-      <Dropdown.Item eventKey="Servicios">Servicios</Dropdown.Item>
+      <Dropdown.Item eventKey="Servicios" href='/services'>Servicios</Dropdown.Item>
     </DropdownButton>
   );
 }

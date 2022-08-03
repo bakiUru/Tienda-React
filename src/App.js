@@ -53,6 +53,11 @@ function App() {
                 path="/detalles/:itemId"
                 element={<ItemDetailContainer/>}
               />
+              <Route
+                extact
+                path="/category/:categoryId"
+                element={<ItemList ItemTitle={titleData.titles.items} />}
+              />
 
               <Route
                 exact
