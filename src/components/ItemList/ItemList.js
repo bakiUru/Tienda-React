@@ -6,7 +6,10 @@ import "./ItemList.css";
 //Guardo Las categorias en el localStorage para capturarla renderizarla con el boton filtrar
 const catchCategory=(data)=>{
   let dataCategory = data.map((cat)=>cat.category)
-  console.log (dataCategory);
+  let dataCatUnique = ([...new Set(dataCategory)]);
+ 
+  //Guardo la info en local storage
+  localStorage.setItem('category',dataCatUnique);
 }
 
 //Agrego el div con el efecto de preCarga
