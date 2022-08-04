@@ -16,11 +16,11 @@ export function ItemBag({ onAdd, init, id, stock, updateStock }) {
   const [show, setShow] = useState(false);
   const target = useRef(null);
   const [count, setCount] = useState(init);
-/*
+
   console.log("Stock recibido", stock);
   console.log("Stock seteado", stockItem);
   console.log(typeof stock);
-*/
+
   useEffect(() => {
     //Desactivo butn de resta y Agregar Carrito
     if (count === 0) {

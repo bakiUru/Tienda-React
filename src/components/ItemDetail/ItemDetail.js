@@ -12,14 +12,15 @@ import { Nav } from "react-bootstrap";
 const srverImg = "https://saeriego.tech/";
 
 export function ItemDetail({nameTitle,imgDsc,imgSrc,description,apply,price,stock}){
-
+console.log(stock)
     //Actualizo Stock
     const [stockItem, setStockItem] = useState(stock);
     //Actualizo Price
     const [itemPrice, setItemPrice] = useState(price);
     const [cantCart, setCantCart] = useState(0);
-  const updateStock = (upStock) => {
-    setStockItem(upStock);
+
+  const updateStock = () => {
+    setStockItem(stockItem-cantCart);
   };
 
   //actualizo precio
@@ -31,17 +32,19 @@ export function ItemDetail({nameTitle,imgDsc,imgSrc,description,apply,price,stoc
 
   const onAdd = (count) => {
     console.log(`Se Enviaron ${count} Al Carro`);
-    setCantCart(count);
-    return count;
+    setCantCart(cantCart+count);
+    return cantCart;
   };
 
 
   
-  useEffect(() => {}, [stockItem]);
+  useEffect(() => {
+    updateStock(cantCart)
+  }, [stockItem]);
 
   useEffect(() => {
     updatePrice();
-  }, [itemPrice]);
+  }, [cantCart]);
 
 
 return (
@@ -66,7 +69,7 @@ return (
                       Precio unidad: ${price}
                     </ListGroup.Item>
                     <ListGroup.Item>
-                      Stock: {stock} unidades
+                      Stock: {stockItem} unidades
                     </ListGroup.Item>
                   </ListGroup>
                 </Card>
@@ -88,7 +91,7 @@ return (
               <Row className="rowBtn">
                 <ItemBag
                   //Tengo problemas al recibir el stock desde aca
-                  stock={stock}
+                  stock={stockItem}
                   init={1}
                   onAdd={onAdd}
                   updateStock={updateStock}
@@ -97,7 +100,7 @@ return (
               <hr></hr>
 
               <Row>
-                <h5>Cantidades Enviadas al Carro: {cantCart}</h5>
+                <h5>Cantidades Enviadas al Carro: <br></br>{cantCart}</h5>
                 <hr></hr>
 
                 <Nav.Link href="/cart" className="btn btn-primary nav-linkpay">
