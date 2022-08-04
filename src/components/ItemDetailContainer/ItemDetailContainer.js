@@ -8,11 +8,7 @@ const URLproducts = "https://saeriego.tech/itemsData.json";
 export function ItemDetailContainer() {
   const [itemDetail, setItemDetail] = useState([]);
   const { itemId } = useParams();
-  //Actualizo Stock
-  const [stockItem, setStockItem] = useState(itemDetail.stock);
-  //Actualizo Price
-  const [itemPrice, setItemPrice] = useState(itemDetail.price);
-  const [cantCart, setCantCart] = useState(0);
+
 
   console.log(typeof itemId);
   const getIdItem = (itemId) => {
@@ -30,34 +26,9 @@ export function ItemDetailContainer() {
 
   useEffect(() => {
     getIdItem(itemId);
-
-    setStockItem(itemDetail.stock);
   }, [itemId]);
 
-  const updateStock = (upStock) => {
-    setStockItem(upStock);
-  };
 
-  //actualizo precio
-  const updatePrice = () => {
-    let cont = onAdd();
-    setItemPrice(itemDetail.price * cont);
-
-  };
-
-  const onAdd = (count) => {
-    console.log(`Se Enviaron ${count} Al Carro`);
-    setCantCart(count);
-    return count;
-  };
-
-
-  
-  useEffect(() => {}, [stockItem]);
-
-  useEffect(() => {
-    updatePrice();
-  }, [itemPrice]);
 
   //funcion Select Cantidades
   const buildSelect = () => {};
@@ -66,9 +37,7 @@ export function ItemDetailContainer() {
     <>
       <ItemDetail 
       {...itemDetail} 
-      onAdd={onAdd}
-      updateStock={updateStock}
-      cantCart={cantCart}
+
 
       />
     </>

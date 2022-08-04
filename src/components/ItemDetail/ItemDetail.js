@@ -11,8 +11,37 @@ import { Nav } from "react-bootstrap";
 
 const srverImg = "https://saeriego.tech/";
 
-export function ItemDetail({nameTitle,imgDsc,imgSrc,description,apply,price,onAdd,stock,updateStock,cantCart}){
+export function ItemDetail({nameTitle,imgDsc,imgSrc,description,apply,price,stock}){
 
+    //Actualizo Stock
+    const [stockItem, setStockItem] = useState(stock);
+    //Actualizo Price
+    const [itemPrice, setItemPrice] = useState(price);
+    const [cantCart, setCantCart] = useState(0);
+  const updateStock = (upStock) => {
+    setStockItem(upStock);
+  };
+
+  //actualizo precio
+  const updatePrice = () => {
+    let cont = onAdd();
+    setItemPrice(price * cont);
+
+  };
+
+  const onAdd = (count) => {
+    console.log(`Se Enviaron ${count} Al Carro`);
+    setCantCart(count);
+    return count;
+  };
+
+
+  
+  useEffect(() => {}, [stockItem]);
+
+  useEffect(() => {
+    updatePrice();
+  }, [itemPrice]);
 
 
 return (
