@@ -21,6 +21,7 @@ const postLoad = () =>
 export function ItemList({ ItemTitle, countCart }) {
   const [listItem, setListItem] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
   const { categoryId } = useParams();
 
   const getItems = () => {
@@ -35,7 +36,6 @@ export function ItemList({ ItemTitle, countCart }) {
         .then((json) => {
           if (json.length === 0) {
             setListItem([]);
-            return <h1>Ups, no hay productos</h1>;
           } else {
             catchCategory(json);
             if (filterItems(categoryId) == "/") setListItem(json);
@@ -43,14 +43,13 @@ export function ItemList({ ItemTitle, countCart }) {
               setListItem(json.filter((item) => item.category == categoryId));
               if (json.length == 0) {
                 setListItem([]);
-                return <h1>Ups, no hay productos</h1>;
               }
             }
           }
           setLoading(false);
         })
         .catch((rej) => {
-          //conItems.appendChild('<p>Error de Conexion</p>');
+          setError(true);
         });
   
   };
@@ -62,7 +61,7 @@ export function ItemList({ ItemTitle, countCart }) {
   }
 
   const filterItems = (categoryId) => {
-    if (categoryId === undefined) categoryId = "/";
+    if (categoryId === undefined) categoryId = "/"
     return categoryId;
   };
   useEffect(() => {
@@ -74,6 +73,8 @@ export function ItemList({ ItemTitle, countCart }) {
   return (
     <>
       <h3 className="titlePage">{ItemTitle}</h3>
+      
+      
       {loading? (
         <div className="contLoading"> 
         <Spinner animation="border" variant="warning" />
@@ -81,7 +82,6 @@ export function ItemList({ ItemTitle, countCart }) {
        
       ) : (
         <>
-
         <Titulo></Titulo>
           <div id="contItems"></div>
           <Container className="contListItem" onLoad={postLoad}>
