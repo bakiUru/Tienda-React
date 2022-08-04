@@ -23,6 +23,7 @@ export function CartWidget() {
         <Badge pill bg="warning" text="dark">
           0
         </Badge>
+      </Button>
         <Offcanvas show={show} placement='end' onHide={handleClose} >
           <Offcanvas.Header closeButton>
             <Offcanvas.Title>Carrito</Offcanvas.Title>
@@ -32,7 +33,7 @@ export function CartWidget() {
            <Button className="pay btn btn-primary" variant="outline-light" onHide={handleClose} > <NavLink className='payLink' to='/cart'>PAGAR</NavLink></Button>
           </Offcanvas.Body>
         </Offcanvas>
-      </Button>
+    
     </div>
   );
 }
