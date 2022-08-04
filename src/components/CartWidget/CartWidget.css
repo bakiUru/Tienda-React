@@ -7,3 +7,17 @@
     
 }
 
+.payLink{
+    color: white!important;
+    text-decoration: none!important;
+}
+
+.pay.btn.btn-primary.btn.btn-outline-light:hover{
+background-color: #198754;
+}
+
+.payLink:hover{
+    color: rgb(255, 255, 255)!important;
+    text-decoration: none!important;
+    
+}

@@ -1,5 +1,4 @@
 import React from 'react';
-
 import IMGS from "../../assests/Utils/Img"
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
@@ -30,12 +29,12 @@ export function NavBar() {
             className="me-auto my-2 my-lg-0"
             navbarScroll
           >
-            <Nav.Link  href="sae">SAE</Nav.Link>
-            <Nav.Link href="info">Informacion</Nav.Link>
+            <Nav.Link  href="/sae">SAE</Nav.Link>
+            <Nav.Link href="/info">Informacion</Nav.Link>
             <NavDropdown title="Productos" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="items">Insumos Riego</NavDropdown.Item>
+              <NavDropdown.Item href="/items">Insumos Riego</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="service">Servicios SAE</NavDropdown.Item>
+              <NavDropdown.Item href="/service">Servicios SAE</NavDropdown.Item>
             </NavDropdown>
           </Nav>
           <Container className="ContenedorTitulo">

@@ -2,21 +2,17 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
-import Form from "react-bootstrap/Form";
 import { ItemBag } from "../ItemBag/ItemBag";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "./ItemDetailContainer.css";
+import Button from "react-bootstrap/Button";
+import { NavLink } from "react-bootstrap";
 import { Nav } from "react-bootstrap";
 
 const URLproducts = "https://saeriego.tech/itemsData.json";
 const srverImg = "https://saeriego.tech/";
-
-
-
-
-
 
 export function ItemDetailContainer() {
   const [itemDetail, setItemDetail] = useState([]);
@@ -26,7 +22,6 @@ export function ItemDetailContainer() {
   //Actualizo Price
   const [itemPrice, setItemPrice] = useState(itemDetail.price);
   const [cantCart, setCantCart] = useState(0);
- 
 
   console.log(typeof itemId);
   const getIdItem = (itemId) => {
@@ -38,14 +33,13 @@ export function ItemDetailContainer() {
         setItemDetail(json.find((item) => item.id === parseInt(itemId)));
       })
       .catch((rej) => {
-        console.log("NO ENCONTRAMOS EL PRODUCTO: ", rej);
         return <h1>NO ENCONTRAMOS EL PRODUCTO</h1>;
       });
   };
 
   useEffect(() => {
     getIdItem(itemId);
-    
+
     setStockItem(itemDetail.stock);
   }, [itemId]);
 
@@ -57,6 +51,7 @@ export function ItemDetailContainer() {
   const updatePrice = () => {
     let cont = onAdd();
     setItemPrice(itemDetail.price * cont);
+
   };
 
   const onAdd = (count) => {
@@ -65,6 +60,8 @@ export function ItemDetailContainer() {
     return count;
   };
 
+
+  
   useEffect(() => {}, [stockItem]);
 
   useEffect(() => {
@@ -120,7 +117,7 @@ export function ItemDetailContainer() {
                   //Tengo problemas al recibir el stock desde aca
                   stock={itemDetail.stock}
                   id={itemId}
-                  init={0}
+                  init={1}
                   onAdd={onAdd}
                   updateStock={updateStock}
                 />
@@ -130,6 +127,10 @@ export function ItemDetailContainer() {
               <Row>
                 <h5>Cantidades Enviadas al Carro: {cantCart}</h5>
                 <hr></hr>
+
+                <Nav.Link href="/cart" className="btn btn-primary nav-linkpay">
+                  PAGAR
+                </Nav.Link>
                 <Nav.Link href="/" className="btn btn-primary nav-link">
                   VOLVER
                 </Nav.Link>

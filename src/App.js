@@ -6,9 +6,14 @@ import { NavBar } from "./components/NavBar/NavBar";
 import { ItemList } from "./components/ItemList/ItemList";
 import { ItemDetailContainer } from "./components/ItemDetailContainer/ItemDetailContainer";
 import titleData from "../src/assests/Utils/title.json";
+import { CartPage } from "./Pages/Cart/CartPage";
 import "./App.css";
 import { FilterBtn } from "./components/FilterBtn/FilterBtn";
+import { SaePage } from "./Pages/Sae/SaePage";
+import { ServicesPage } from "./Pages/Services/ServicesPage";
+import { InfoPage } from "./Pages/Info/InfoPage";
 
+localStorage.setItem('category','Aspersor,Accesorio,Automatismo,Valvulas,Bombas')
 function App() {
 
 
@@ -22,26 +27,26 @@ function App() {
           <Container className="spaceContainer">
             <FilterBtn/>
             <Routes>
-              
+
               <Route
                 extact
                 path="/"
-                element={<ItemList ItemTitle={titleData.titles.top} />}
+                element={<ItemList ItemTitle={titleData.titles.items} />}
               />
               <Route
                 extact
                 path="/sae"
-                element={<ItemList ItemTitle={titleData.titles.sae} />}
+                element={<SaePage/>}
               />
               <Route
                 extact
                 path="/info"
-                element={<ItemList ItemTitle={titleData.titles.info} />}
+                element={<InfoPage />}
               />
               <Route
                 extact
                 path="/service"
-                element={<ItemList ItemTitle={titleData.titles.serv} />}
+                element={<ServicesPage  />}
               />
               <Route
                 extact
@@ -53,12 +58,23 @@ function App() {
                 path="/detalles/:itemId"
                 element={<ItemDetailContainer/>}
               />
+              <Route
+                extact
+                path="/category/:categoryId"
+                element={<ItemList/>}
+              />
+                            <Route
+                extact
+                path="/cart"
+                element={<CartPage/>}
+              />
 
               <Route
                 exact
                 path="*"
                 element={<ItemList ItemTitle={titleData.titles.top} />}
               />
+      
             </Routes>
           </Container>
         </section>

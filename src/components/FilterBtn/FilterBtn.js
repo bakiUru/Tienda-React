@@ -1,43 +1,49 @@
 import React, { useEffect, useState } from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
-import './FilterBtn.css'
+import { NavLink } from "react-router-dom";
+import "./FilterBtn.css";
+
 
 const handleCategory = () => {
   let category = localStorage.getItem("category");
-  category = category.split(",");
-return category
+  console.log(category)
+  if (category == null)
+   { category = [];
+      
+   }
+  else category = category.split(",");
+  return category;
 };
 
 export function FilterBtn() {
   const [categor, setCategor] = useState(handleCategory);
-  const [valueCat, setValueCat] = useState(handleCategory);
+  const [valueCat, setValueCat] = useState("");
 
-  const hadleSelection= () =>{
 
-  }
-console.log(categor)
+  const handleSelection = (e) => {
+    let elemnt = e.target;
+    setValueCat(elemnt.getAttribute("value"));
+    console.log(elemnt.getAttribute("value"));
+    
+  };
+
   useEffect(() => {
-       
-  }, [categor]);
+    
+  }, [valueCat]);
 
   return (
-    
     <DropdownButton align="start" title="Filtrar" id="dropdown-menu-align-end">
-      <select>
-      <option>Selecciones un Opcion</option>
-     
-      {
-          categor.map((cat, index) => 
+      {categor.map((cat, index) => (
+        <Dropdown.Item onClick={handleSelection} key={index} value={cat}>
+          <NavLink to={`/category/${cat}`} className="dropdown-item">{cat}</NavLink>
+        </Dropdown.Item>
+      ))}
 
-            <option className="optionSelect" key={index} value={cat}>{cat}</option>
-          )
-
-
-      }
-      </select>
       <Dropdown.Divider />
-      <Dropdown.Item eventKey="Servicios">Servicios</Dropdown.Item>
+      <Dropdown.Item eventKey="Servicios" href="/service">
+        Servicios
+      </Dropdown.Item>
     </DropdownButton>
   );
 }
