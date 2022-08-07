@@ -1,53 +1,65 @@
 import React, { useEffect, useState } from "react";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
-import { ItemBag } from "../ItemBag/ItemBag";
+import { ItemCount } from "../ItemCount/ItemCount";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "./ItemDetail.css";
 import { Nav } from "react-bootstrap";
 
-
 const srverImg = "https://saeriego.tech/";
 
-export function ItemDetail({nameTitle,imgDsc,imgSrc,description,apply,price,stock}){
-console.log(stock)
-    //Actualizo Stock
-    const [stockItem, setStockItem] = useState(stock);
-    //Actualizo Price
-    const [itemPrice, setItemPrice] = useState(price);
-    const [cantCart, setCantCart] = useState(0);
+export function ItemDetail({
+  nameTitle,
+  imgDsc,
+  imgSrc,
+  description,
+  apply,
+  price,
+  stock,
+}) {
+
+  //Actualizo Stock
+  const [stockItem, setStockItem] = useState(stock);
+  //Actualizo Price
+  const [itemPrice, setItemPrice] = useState(0);
+  const [cantCart, setCantCart] = useState(0);
+  const [totalCart, setTotalCart] = useState(0);
+
 
   const updateStock = () => {
-    setStockItem(stockItem-cantCart);
+    setStockItem(stockItem - cantCart);
   };
+  useEffect(() => {
+    setItemPrice(price)
+    setStockItem(stock)
+  }, [stock]);
+
+  useEffect(() => {
+    updatePrice();
+    setTotalCart(totalCart + cantCart);
+  }, [cantCart]);
 
   //actualizo precio
   const updatePrice = () => {
-    let cont = onAdd();
-    setItemPrice(price * cont);
-
+    setItemPrice(price * totalCart);
   };
 
   const onAdd = (count) => {
     console.log(`Se Enviaron ${count} Al Carro`);
-    setCantCart(cantCart+count);
+    setCantCart( count);
+    console.log('carro en :', cantCart)
     return cantCart;
   };
 
-
-  
-  useEffect(() => {
-    updateStock(cantCart)
-  }, [stockItem]);
-
   useEffect(() => {
     updatePrice();
+    setCantCart(0)
+    updateStock()
   }, [cantCart]);
 
-
-return (
+  return (
     <>
       <Card>
         <Container>
@@ -57,7 +69,11 @@ return (
               <Card.Body>
                 <Card.Text>{imgDsc}</Card.Text>
                 <Card style={{ width: "25rem" }}>
-                  <Card.Img variant="top" src={srverImg + imgSrc} />
+                  <Card.Img
+                    loading="lazy"
+                    variant="top"
+                    src={srverImg + imgSrc}
+                  />
                   <Card.Body>
                     <Card.Title>Producto Detallado</Card.Title>
                     <Card.Text>{description}</Card.Text>
@@ -65,12 +81,8 @@ return (
                   <Card.Header>Aplicaciones</Card.Header>
                   <ListGroup bg="dark" variant="flush">
                     <ListGroup.Item>{apply}</ListGroup.Item>
-                    <ListGroup.Item>
-                      Precio unidad: ${price}
-                    </ListGroup.Item>
-                    <ListGroup.Item>
-                      Stock: {stockItem} unidades
-                    </ListGroup.Item>
+                    <ListGroup.Item>Precio unidad: ${price}</ListGroup.Item>
+                    <ListGroup.Item>Stock: {stockItem} unidades</ListGroup.Item>
                   </ListGroup>
                 </Card>
               </Card.Body>
@@ -84,14 +96,14 @@ return (
               </Row>
               <Row>
                 <hr></hr>
-                <h4>$ {price}</h4>
+                <h4>$ {itemPrice}</h4>
               </Row>
 
               <hr></hr>
               <Row className="rowBtn">
-                <ItemBag
+                <ItemCount
                   //Tengo problemas al recibir el stock desde aca
-                  stock={stockItem}
+                  stocks={stockItem}
                   init={1}
                   onAdd={onAdd}
                   updateStock={updateStock}
@@ -100,14 +112,17 @@ return (
               <hr></hr>
 
               <Row>
-                <h5>Cantidades Enviadas al Carro: <br></br>{cantCart}</h5>
+                <h5>
+                  Cantidades Enviadas al Carro: <br></br>
+                  {totalCart}
+                </h5>
                 <hr></hr>
 
                 <Nav.Link href="/cart" className="btn btn-primary nav-linkpay">
                   PAGAR
                 </Nav.Link>
                 <Nav.Link href="/" className="btn btn-primary nav-link">
-                  VOLVER
+                  SEGUIR COMPRANDO
                 </Nav.Link>
               </Row>
             </Col>

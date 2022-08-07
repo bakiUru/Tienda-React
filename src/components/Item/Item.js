@@ -1,6 +1,5 @@
 import React, {useEffect,useState} from 'react';
 import Card from "react-bootstrap/Card";
-import { ItemBag } from "../ItemBag/ItemBag";
 import { DetailItem } from '../DetailItem/DetailItem';
 import IMGS from "../../assests/Utils/Img";
 import './Item.css'

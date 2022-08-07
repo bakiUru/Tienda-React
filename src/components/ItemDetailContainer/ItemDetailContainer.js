@@ -29,10 +29,6 @@ export function ItemDetailContainer() {
   }, [itemId]);
 
 
-
-  //funcion Select Cantidades
-  const buildSelect = () => {};
-
   return (
     <>
       <ItemDetail 

@@ -5,41 +5,37 @@ import Badge from "react-bootstrap/esm/Badge";
 import Overlay from "react-bootstrap/Overlay";
 import Tooltip from "react-bootstrap/Tooltip";
 import { BsBagFill } from "react-icons/bs";
-import "./ItemBag.css";
+import "./ItemCount.css";
 
 //Ultima Actualizacion, diferenciacion de componentes para cada producto añadiendo
 //id del item al id del componente
 
-export function ItemBag({ onAdd, init, id, stock, updateStock }) {
+export function ItemCount({ onAdd, init,stocks}) {
   //HOOKS
-  const [stockItem, setStockItem] = useState(stock);
   const [show, setShow] = useState(false);
   const target = useRef(null);
   const [count, setCount] = useState(init);
 
-  console.log("Stock recibido", stock);
-  console.log("Stock seteado", stockItem);
-  console.log(typeof stock);
 
   useEffect(() => {
     //Desactivo butn de resta y Agregar Carrito
     if (count === 0) {
       document
-        .getElementById("bagBtnAddCart" + id)
+        .getElementById("bagBtnAddCart")
         .toggleAttribute("disabled", true);
-      document.getElementById("remBtn" + id).toggleAttribute("disabled", true);
+      document.getElementById("remBtn").toggleAttribute("disabled", true);
     } else {
-      document.getElementById("remBtn" + id).toggleAttribute("disabled", false);
+      document.getElementById("remBtn").toggleAttribute("disabled", false);
       document
-        .getElementById("bagBtnAddCart" + id)
+        .getElementById("bagBtnAddCart")
         .toggleAttribute("disabled", false);
     }
 
     //Desactivo btn de suma al limite de STOCK
-    if (count === stockItem)
-      document.getElementById("addBtn" + id).toggleAttribute("disabled", true);
+    if (count === stocks || stocks === 0)
+      document.getElementById("addBtn").toggleAttribute("disabled", true);
     else
-      document.getElementById("addBtn" + id).toggleAttribute("disabled", false);
+      document.getElementById("addBtn").toggleAttribute("disabled", false);
   }, [count]);
 
   //Limpio el Efecto del tooltip
@@ -51,8 +47,8 @@ export function ItemBag({ onAdd, init, id, stock, updateStock }) {
 
   //Agrega a la Bolsa un item
   const addBag = () => {
-    if (count < stockItem) setCount(count + 1);
-    else console.log("NO Hay Stock");
+    if (count < stocks) setCount(count + 1);
+    else alert("NO Hay Stock");
   };
   //quita de la Bolsa un item
   const remBag = () => {
@@ -69,19 +65,15 @@ export function ItemBag({ onAdd, init, id, stock, updateStock }) {
   //envia al carro
   const sendBag = () => {
     setCount(0);
-    setStockItem(stockItem - count);
     onAdd(count);
   };
 
-  //Actualizo Stock
-  useEffect(() => {
-    updateStock(stockItem);
-  }, [stockItem]);
+
 
   return (
     <Container className="contBtn" ref={target}>
       <Button
-        id={"addBtn" + id}
+        id={"addBtn"}
         variant="primary"
         className="bagBtn"
         onClick={addBag}
@@ -95,7 +87,7 @@ export function ItemBag({ onAdd, init, id, stock, updateStock }) {
         </Badge>
       </Button>
       <Button
-        id={"remBtn" + id}
+        id={"remBtn"}
         variant="primary"
         className="bagBtn"
         onClick={remBag}
@@ -110,9 +102,16 @@ export function ItemBag({ onAdd, init, id, stock, updateStock }) {
           </Tooltip>
         )}
       </Overlay>
+      <Overlay target={target.current} show={show} placement="right">
+        {(props) => (
+          <Tooltip id="overlay-example" {...props}>
+            No hay Stock!!
+          </Tooltip>
+        )}
+      </Overlay>
 
       <Button
-        id={"bagBtnAddCart" + id}
+        id={"bagBtnAddCart"}
         variant="primary"
         className="bagBtnAddCart"
         onClick={sendBag}
