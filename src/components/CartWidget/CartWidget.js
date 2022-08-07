@@ -7,21 +7,25 @@ import "./CartWidget.css";
 import { NavLink } from "react-router-dom";
 
 export function CartWidget() {
+    const [cartNumber, setCartNumber] = useState(0);
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
     useEffect(() => {
-        
-    }, [show]);
+            //Desactivo btn de suma al limite de STOCK
+
+    }, [cartNumber]);
+
+
 
   return (
     <div>
       <Button className="cartBtn" variant="outline-light" onClick={handleShow}>
         <AiOutlineShoppingCart className="cartIcon" />
         <Badge pill bg="warning" text="dark">
-          0
+         {cartNumber}
         </Badge>
       </Button>
         <Offcanvas show={show} placement='end' onHide={handleClose} >
@@ -29,7 +33,25 @@ export function CartWidget() {
             <Offcanvas.Title>Carrito</Offcanvas.Title>
           </Offcanvas.Header>
           <Offcanvas.Body>
-           Lista de los Productos agregados al Carrito
+           Lista de los Productos
+           {cartNumber == 0? 
+           <div>
+
+             <span>
+             <br></br>
+             No hay Items en El carro</span> 
+             <br></br>
+             <br></br>
+           </div>
+           : 
+           <div>
+
+             <br></br>
+             <span>Tus Articulos:</span>
+             <br></br>
+             <br></br>
+           </div>
+           }
            <Button className="pay btn btn-primary" variant="outline-light" onHide={handleClose} > <NavLink className='payLink' to='/cart'>PAGAR</NavLink></Button>
           </Offcanvas.Body>
         </Offcanvas>
