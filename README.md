@@ -1,4 +1,6 @@
 ## SAE STORE
+![Logo SAE](/src/img/logo)
+
 
 ### Instalacion del Portal
 
