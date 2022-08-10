@@ -1,13 +1,16 @@
-import React, {useState,useEffect} from "react";
+import React, {useState,useEffect,useContext} from "react";
 import Button from "react-bootstrap/esm/Button";
 import Badge from "react-bootstrap/Badge";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import "./CartWidget.css";
 import { NavLink } from "react-router-dom";
+import { CartContext } from "../../Context/CartContext";
 
 export function CartWidget() {
-    const [cartNumber, setCartNumber] = useState(0);
+
+    const {cantItemInCart} =  useContext(CartContext);;
+  
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -16,7 +19,7 @@ export function CartWidget() {
     useEffect(() => {
             //Desactivo btn de suma al limite de STOCK
 
-    }, [cartNumber]);
+    }, [cantItemInCart]);
 
 
 
@@ -25,7 +28,7 @@ export function CartWidget() {
       <Button className="cartBtn" variant="outline-light" onClick={handleShow}>
         <AiOutlineShoppingCart className="cartIcon" />
         <Badge pill bg="warning" text="dark">
-         {cartNumber}
+         {cantItemInCart}
         </Badge>
       </Button>
         <Offcanvas show={show} placement='end' onHide={handleClose} >
@@ -34,7 +37,7 @@ export function CartWidget() {
           </Offcanvas.Header>
           <Offcanvas.Body>
            Lista de los Productos
-           {cartNumber == 0? 
+           {cantItemInCart == 0? 
            <div>
 
              <span>

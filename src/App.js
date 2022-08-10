@@ -12,6 +12,7 @@ import { FilterBtn } from "./components/FilterBtn/FilterBtn";
 import { SaePage } from "./Pages/Sae/SaePage";
 import { ServicesPage } from "./Pages/Services/ServicesPage";
 import { InfoPage } from "./Pages/Info/InfoPage";
+import CartProvider from './Context/CartContext' 
 
 localStorage.setItem('category','Aspersor,Accesorio,Automatismo,Valvulas,Bombas')
 function App() {
@@ -19,6 +20,7 @@ function App() {
 
   return (
     <BrowserRouter>
+    <CartProvider valueCart={0}>
       <div className="App">
         <header className="App-header">
           <NavBar />
@@ -79,6 +81,7 @@ function App() {
           </Container>
         </section>
       </div>
+      </CartProvider>
     </BrowserRouter>
   );
 }

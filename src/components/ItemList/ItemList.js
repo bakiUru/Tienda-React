@@ -5,7 +5,8 @@ import Container from "react-bootstrap/esm/Container";
 import { Item } from "../Item/Item";
 import "./ItemList.css";
 
-//Guardo Las categorias en el localStorage para capturarla renderizarla con el boton filtrar
+//Guardo Las categorias en el localStorage para capturarla renderizarla con el boton filtrar, si se agrega 
+//otro producto a la BD con una nueva categoria la podria renderizar
 const catchCategory = (data) => {
   let dataCategory = data.map((cat) => cat.category);
   let dataCatUnique = [...new Set(dataCategory)];

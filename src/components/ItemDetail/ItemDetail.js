@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import { ItemCount } from "../ItemCount/ItemCount";
@@ -7,10 +7,12 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "./ItemDetail.css";
 import { Nav } from "react-bootstrap";
+import { CartContext } from "../../Context/CartContext";
 
 const srverImg = "https://saeriego.tech/";
 
 export function ItemDetail({
+  id,
   nameTitle,
   imgDsc,
   imgSrc,
@@ -19,6 +21,9 @@ export function ItemDetail({
   price,
   stock,
 }) {
+
+//Context
+const {addItemsCart} = useContext(CartContext);
 
   //Actualizo Stock
   const [stockItem, setStockItem] = useState(stock);
@@ -47,10 +52,9 @@ export function ItemDetail({
   };
 
   const onAdd = (count) => {
-    console.log(`Se Enviaron ${count} Al Carro`);
-    setCantCart( count);
-    console.log('carro en :', cantCart)
-    return cantCart;
+    setCantCart(count);
+    addItemsCart(id, nameTitle, totalCart, price,imgSrc);
+   
   };
 
   useEffect(() => {
