@@ -19,7 +19,7 @@ export function ItemDetail({
   description,
   apply,
   price,
-  stock,
+  stock
 }) {
 
 //Context
@@ -29,6 +29,9 @@ const {addItemsCart} = useContext(CartContext);
   const [stockItem, setStockItem] = useState(stock);
   //Actualizo Price
   const [itemPrice, setItemPrice] = useState(0);
+
+  const[pay, setPay] = useState(false);
+
   const [cantCart, setCantCart] = useState(0);
   const [totalCart, setTotalCart] = useState(0);
 
@@ -41,10 +44,8 @@ const {addItemsCart} = useContext(CartContext);
     setStockItem(stock)
   }, [stock]);
 
-  useEffect(() => {
-    updatePrice();
-    setTotalCart(totalCart + cantCart);
-  }, [cantCart]);
+
+
 
   //actualizo precio
   const updatePrice = () => {
@@ -53,14 +54,23 @@ const {addItemsCart} = useContext(CartContext);
 
   const onAdd = (count) => {
     setCantCart(count);
-    addItemsCart(id, nameTitle, totalCart, price,imgSrc);
-   
+    
   };
 
   useEffect(() => {
     updatePrice();
     setCantCart(0)
     updateStock()
+    setTotalCart(totalCart + cantCart);
+
+    if(totalCart >0)
+    {
+      setPay(!pay);
+      addItemsCart(id, nameTitle, totalCart, price,imgSrc);
+    }
+      
+
+    
   }, [cantCart]);
 
   return (
@@ -122,7 +132,7 @@ const {addItemsCart} = useContext(CartContext);
                 </h5>
                 <hr></hr>
 
-                <Nav.Link href="/cart" className="btn btn-primary nav-linkpay">
+                <Nav.Link href="/cart" className="btn btn-primary nav-linkpay" style={{visibility: !pay? 'hidden': 'visible'}}>
                   PAGAR
                 </Nav.Link>
                 <Nav.Link href="/" className="btn btn-primary nav-link">

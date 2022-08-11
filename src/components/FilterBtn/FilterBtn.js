@@ -7,7 +7,7 @@ import "./FilterBtn.css";
 
 const handleCategory = () => {
   let category = localStorage.getItem("category");
-  console.log(category)
+
   if (category == null)
    { category = [];
       
