@@ -16,10 +16,6 @@ export function CartPage(){
     const[totalPrice, setTotalPrice] = useState(0);
 
 
-    useEffect(()=>{
-
-
-    },[cartNow])
     
     useEffect(()=>{
           
@@ -36,6 +32,24 @@ export function CartPage(){
         
     return( 
         <>
+        {cantItemInCart == 0? 
+        <>
+        <h1>No hay Items en Tu Carro</h1> 
+        
+        <br>
+        </br>
+        <br>
+        </br>
+        <br>
+        </br>
+        <NavLink to="/items" className="btn btn-primary ">
+                  SEGUIR COMPRANDO
+        </NavLink>
+    </>
+        :
+       
+        (
+            <>
         <h1>Tu Carrito</h1>
         <Container className='contTable'>
         <Table className='tableCart'>
@@ -76,6 +90,6 @@ export function CartPage(){
         </NavLink>
         </Container>
         </>
-        
-    );
+    )}
+    </>);
 }
