@@ -6,7 +6,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "./ItemDetail.css";
-import { Nav } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
 import { CartContext } from "../../Context/CartContext";
 
 const srverImg = "https://saeriego.tech/";
@@ -132,12 +132,12 @@ const {addItemsCart} = useContext(CartContext);
                 </h5>
                 <hr></hr>
 
-                <Nav.Link href="/cart" className="btn btn-primary nav-linkpay" style={{visibility: !pay? 'hidden': 'visible'}}>
+                <NavLink to="/cart" className="btn btn-primary nav-linkpay" style={{visibility: !pay? 'hidden': 'visible'}}>
                   PAGAR
-                </Nav.Link>
-                <Nav.Link href="/" className="btn btn-primary nav-link">
+                </NavLink>
+                <NavLink to="/items" className="btn btn-primary nav-link">
                   SEGUIR COMPRANDO
-                </Nav.Link>
+                </NavLink>
               </Row>
             </Col>
           </Row>

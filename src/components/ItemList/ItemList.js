@@ -85,7 +85,7 @@ export function ItemList({ ItemTitle, countCart }) {
         <>
         <Titulo></Titulo>
           <div id="contItems"></div>
-          <Container className="contListItem" onLoad={postLoad}>
+          <Container className="contListItem">
             {listItem.map((item) => {
               return (
                 <Item countCart={countCart} key={item.id} {...item}></Item>

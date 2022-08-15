@@ -24,7 +24,6 @@ export function FilterBtn() {
   const handleSelection = (e) => {
     let elemnt = e.target;
     setValueCat(elemnt.getAttribute("value"));
-    console.log(elemnt.getAttribute("value"));
     
   };
 

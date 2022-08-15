@@ -20,7 +20,7 @@ function App() {
 
   return (
     <BrowserRouter>
-    <CartProvider valueCart={0}>
+    <CartProvider >
       <div className="App">
         <header className="App-header">
           <NavBar />
