@@ -29,7 +29,7 @@ export function Item({id, nameTitle,description,price,imgSrc}) {
         <hr></hr>
           <DetailItem id={id} nameTitle={nameTitle} description={description} ></DetailItem>
          <hr></hr>
-         <p><span>Precio: {price}</span></p>
+         <p><span>Precio: $ {price}</span></p>
         </Card.Body>
       </Card>
   

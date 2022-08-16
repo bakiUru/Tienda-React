@@ -102,14 +102,7 @@ export function ItemCount({ onAdd, init,stocks}) {
           </Tooltip>
         )}
       </Overlay>
-      <Overlay target={target.current} show={show} placement="right">
-        {(props) => (
-          <Tooltip id="overlay-example" {...props}>
-            No hay Stock!!
-          </Tooltip>
-        )}
-      </Overlay>
-
+      
       <Button
         id={"bagBtnAddCart"}
         variant="primary"

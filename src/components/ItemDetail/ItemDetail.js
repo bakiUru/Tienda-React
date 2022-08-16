@@ -19,33 +19,38 @@ export function ItemDetail({
   description,
   apply,
   price,
-  stock
+  stock,
 }) {
-
-//Context
-const {addItemsCart} = useContext(CartContext);
+  //Context
+  const { addItemsCart, isInCart, cart } = useContext(CartContext);
 
   //Actualizo Stock
   const [stockItem, setStockItem] = useState(stock);
   //Actualizo Price
-  const [itemPrice, setItemPrice] = useState(0);
+  const [itemPrice, setItemPrice] = useState(price);
 
-  const[pay, setPay] = useState(false);
+  const [pay, setPay] = useState(false);
 
   const [cantCart, setCantCart] = useState(0);
   const [totalCart, setTotalCart] = useState(0);
 
-
   const updateStock = () => {
     setStockItem(stockItem - cantCart);
   };
+
+  //Chequeo si el producto ya esta en el carro y traigo la cantidadd
+  let set = isInCart(cart, id);
+
   useEffect(() => {
-    setItemPrice(price)
-    setStockItem(stock)
+    if (set != undefined) {
+      setTotalCart(set.quantity);
+      setItemPrice(price*totalCart);
+      setPay(!pay);
+    }
+    
+    setItemPrice(price);
+    setStockItem(stock);
   }, [stock]);
-
-
-
 
   //actualizo precio
   const updatePrice = () => {
@@ -54,23 +59,19 @@ const {addItemsCart} = useContext(CartContext);
 
   const onAdd = (count) => {
     setCantCart(count);
-    
   };
 
   useEffect(() => {
     updatePrice();
-    setCantCart(0)
-    updateStock()
+    setCantCart(0);
+    updateStock();
     setTotalCart(totalCart + cantCart);
-
-    if(totalCart >0)
-    {
-      setPay(!pay);
-      addItemsCart(id, nameTitle, totalCart, price,imgSrc);
-    }
-      
-
     
+    
+    if (totalCart > 0) {
+      setPay(!pay);
+      addItemsCart(id, nameTitle, totalCart, price, imgSrc);
+    }
   }, [cantCart]);
 
   return (
@@ -118,7 +119,7 @@ const {addItemsCart} = useContext(CartContext);
                 <ItemCount
                   //Tengo problemas al recibir el stock desde aca
                   stocks={stockItem}
-                  init={1}
+                  init={totalCart === 0 ? 1 : totalCart}
                   onAdd={onAdd}
                   updateStock={updateStock}
                 />
@@ -132,7 +133,11 @@ const {addItemsCart} = useContext(CartContext);
                 </h5>
                 <hr></hr>
 
-                <NavLink to="/cart" className="btn btn-primary nav-linkpay" style={{visibility: !pay? 'hidden': 'visible'}}>
+                <NavLink
+                  to="/cart"
+                  className="btn btn-primary nav-linkpay"
+                  style={{ visibility: !pay ? "hidden" : "visible" }}
+                >
                   PAGAR
                 </NavLink>
                 <NavLink to="/items" className="btn btn-primary nav-link">

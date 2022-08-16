@@ -4,6 +4,7 @@ import { Container } from 'react-bootstrap';
 import {CartContext} from '../../Context/CartContext';
 import { ItemCart } from '../../components/ItemCart/ItemCart';
 import { NavLink } from "react-router-dom";
+import {Row, Col} from 'react-bootstrap';
 import Button from "react-bootstrap/Button";
 
 import './CartPage.css'
@@ -20,13 +21,18 @@ export function CartPage(){
     useEffect(()=>{
           
             setTotalPrice(totalAmount(cartNow))
-            console.log(totalAmount(cartNow))
             if (cantItemInCart==0)
             {
                 setCartNow([])
                 setTotalPrice(0)
             }
+            setCartNow(cart)          
         },[cantItemInCart])
+    useEffect(()=>{
+          
+            setTotalPrice(totalAmount(cartNow))
+         
+        },[cartNow])
 
  
         
@@ -40,10 +46,19 @@ export function CartPage(){
         </br>
         <br>
         </br>
+        <Container>
+        <Row>
+        <Col></Col>
+        <Col xs={6}><iframe width={'500vh'} height={'500vh'} src="https://embed.lottiefiles.com/animation/86046"></iframe></Col>
+        <Col></Col>
+      </Row>
+        
+        </Container>
+        
         <br>
         </br>
         <NavLink to="/items" className="btn btn-primary ">
-                  SEGUIR COMPRANDO
+                  Ir de Compras
         </NavLink>
     </>
         :
@@ -72,6 +87,13 @@ export function CartPage(){
         </Table>
         </Container>
         <Container>
+        <Button
+        variant="success"
+        onClick={()=>alert("Proximamente")}
+      >
+        Terminar Compra
+      </Button>
+      {'                                      '}
         <Button
         variant="danger"
         onClick={cleanCart}

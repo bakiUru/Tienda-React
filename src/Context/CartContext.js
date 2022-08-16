@@ -1,3 +1,4 @@
+import e from "cors";
 import React, { createContext, useState } from "react";
 
 export const CartContext = createContext([]);
@@ -23,11 +24,20 @@ const CartProvider = ({ children }) => {
   };
 
   const totalAmount = (cart) =>{
-    
     return cart.map(element => element.price).reduce((a, b) => a + b, 0);
        
   }
   const cleanCart = () => setCart([]);
+
+//Borro Item del Carro
+const delItemCart = (id) =>{
+  console.log("borrando")
+  
+  setCart(cart.filter(item => item.id != id))
+  console.log("Despues de borrar Item: ",cart)
+  
+}
+
 
   //Envio datos al carro
   const addItemsCart = (id, nameItem, quantity, price,img) => {
@@ -44,9 +54,6 @@ const CartProvider = ({ children }) => {
               : item
           )
         );
-        console.log("lo encontre:", cart);
-        console.log("Se sumaron:" + newItem.quantity + " cantidades");
-        console.log("ES la funcion ", isInCart(cart, id));
       }
       //No encuentra Agrega uno nuevo
       else {
@@ -56,16 +63,9 @@ const CartProvider = ({ children }) => {
     }
     //Si esta Vacio Crea El primer Elemento
     else setCart([newItem]);
-
-    console.log("Que hay en el Carro:", cart);
   };
 
-  //Cantidad de unidades
-  const itemUnitCart = () => {
-    cart.map((item) => {
-      return cart.quantity + item.quantity;
-    });
-  };
+
 
   return (
     <CartContext.Provider
@@ -73,8 +73,8 @@ const CartProvider = ({ children }) => {
         cart,
         isInCart,
         addItemsCart,
-        itemUnitCart,
         cleanCart,
+        delItemCart,
         totalAmount,
         cantItemInCart: cart.length,
       }}
