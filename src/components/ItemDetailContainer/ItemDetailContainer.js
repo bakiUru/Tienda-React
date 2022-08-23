@@ -1,39 +1,33 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import {ItemDetail} from '../ItemDetail/ItemDetail'
-
-const URLproducts = "https://saeriego.tech/itemsData.json";
+import { ItemDetail } from "../ItemDetail/ItemDetail";
+import { doc, getDoc, getFirestore } from "firebase/firestore";
 
 
 export function ItemDetailContainer() {
   const [itemDetail, setItemDetail] = useState([]);
   const { itemId } = useParams();
 
-
   console.log(typeof itemId);
-  const getIdItem = (itemId) => {
-    fetch(URLproducts)
-      .then((res) => {
-        return res.json();
-      })
-      .then((json) => {
-        setItemDetail(json.find((item) => item.id === parseInt(itemId)));
-      })
-      .catch((rej) => {
-        console.log(rej)
-      });
-  };
+
 
   useEffect(() => {
-    getIdItem(itemId);
-  }, [itemId]);
+    const db = getFirestore();
+    const itemsCollection = doc(db, "items", itemId);
 
+    getDoc(itemsCollection)
+      .then((snapshot) => {
+        setItemDetail({ ...snapshot.data(), id: snapshot.id });
+      })
+      .catch((error) => {
+        setItemDetail([]);
+        console.log("NO hubo conexion", error);
+      });
+  }, [itemId]);
 
   return (
     <>
-      <ItemDetail 
-      {...itemDetail} 
-      />
+      <ItemDetail {...itemDetail} />
     </>
   );
 }

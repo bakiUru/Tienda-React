@@ -4,72 +4,77 @@ import Spinner from 'react-bootstrap/Spinner';
 import Container from "react-bootstrap/esm/Container";
 import { Item } from "../Item/Item";
 import "./ItemList.css";
+import { FilterBtn } from "../FilterBtn/FilterBtn";
+import { useNavigate } from "react-router-dom";
+import {getFirestore, getDocs, query, where, collection} from 'firebase/firestore'
 
 //Guardo Las categorias en el localStorage para capturarla renderizarla con el boton filtrar, si se agrega 
 //otro producto a la BD con una nueva categoria la podria renderizar
 const catchCategory = (data) => {
-  let dataCategory = data.map((cat) => cat.category);
+  let dataCategory = data.docs.map((cat) => cat.category);
   let dataCatUnique = [...new Set(dataCategory)];
 
   //Guardo la info en local storage
   localStorage.setItem("category", dataCatUnique);
 };
 
-//Quito el Div
-const postLoad = () =>
-  document.getElementById("contItems").removeAttribute("class");
+
 
 export function ItemList({ ItemTitle, countCart }) {
   const [listItem, setListItem] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
   const { categoryId } = useParams();
-
-  const getItems = () => {
   
-      //Recupero la informacion de los productos
-      //Colgue el archivo en mi servidor web
+  
+  const navigate = useNavigate();
+  
+  useEffect(() => {
+    //firebase
+    const db = getFirestore()
+    const itemsCollection = collection(db,'items');
+    
+    
+    if (categoryId)
+    {
+      const q = query(itemsCollection, where('category', '==' , categoryId))
       setLoading(true);
-      fetch("https://saeriego.tech/itemsData.json")
-        .then((res) => {
-          return res.json();
-        })
-        .then((json) => {
-          if (json.length === 0) {
-            setListItem([]);
-          } else {
-            catchCategory(json);
-            if (filterItems(categoryId) == "/") setListItem(json);
-            else {
-              setListItem(json.filter((item) => item.category == categoryId));
-              if (json.length == 0) {
-                setListItem([]);
-              }
-            }
-          }
-          setLoading(false);
-        })
-        .catch((rej) => {
-          setError(true);
-        });
-  
-  };
+      getDocs(q)
+      .then((snapshot)=>{
+
+        setListItem(snapshot.docs.map((doc)=>({ ...doc.data(), id: doc.id})
+        
+      ))
+      }).catch((error)=>{
+        setListItem([])
+        console.log('NO hubo conexion',error)
+      })
+      .finally(()=> setLoading(false))
+      
+    } 
+   else{
+      setLoading(true);
+      getDocs(itemsCollection)
+      .then((snapshot)=>{
+        setListItem(snapshot.docs.map((doc)=>({ ...doc.data(), id: doc.id})))
+        //catchCategory(snapshot) TODO CATEGORIA DINAMICA
+      }).catch((error)=>{
+        setListItem([])
+        console.log('NO hubo conexion de Items',error)
+      })
+      .finally(()=> setLoading(false))
+    }
+  }, [categoryId]);
+
+
+
+  const gotoItem =(id)=> navigate(`/detalles/${id}`);
+
 
   function Titulo() {
     if (categoryId !== "/")
       return <h3 className="titlePage">{categoryId}</h3>;
     else return <></>;
   }
-
-  const filterItems = (categoryId) => {
-    if (categoryId === undefined) categoryId = "/"
-    return categoryId;
-  };
-  useEffect(() => {
-    //Cargo los Items
-    getItems();
-    filterItems(categoryId);
-  }, [categoryId]);
 
   return (
     <>
@@ -84,11 +89,16 @@ export function ItemList({ ItemTitle, countCart }) {
       ) : (
         <>
         <Titulo></Titulo>
+        <FilterBtn/>
+        <br>
+        </br>
+        <br>
+        </br>
           <div id="contItems"></div>
           <Container className="contListItem">
             {listItem.map((item) => {
               return (
-                <Item countCart={countCart} key={item.id} {...item}></Item>
+                <Item gotoItem={()=>gotoItem(item.id)} countCart={countCart} key={item.id} {...item}></Item>
               );
             })}
           </Container>

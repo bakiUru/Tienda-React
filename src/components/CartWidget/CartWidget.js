@@ -35,15 +35,18 @@ export function CartWidget() {
           <Offcanvas.Title>Carrito</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
-          Lista de los Productos
+          <h5>Lista de los Productos</h5>
           {cantItemInCart == 0 ? (
             <div>
               <span>
                 <br></br>
-                No hay Items en El carro
+               <h6>No hay Items en El carro</h6>
               </span>
               <br></br>
               <br></br>
+              <NavLink to="/items"  className="btn btn-primarygoShop ">
+                  Ir de Compras
+               </NavLink>
             </div>
           ) : (
             <div>
@@ -55,18 +58,12 @@ export function CartWidget() {
                 return (<span>{item.nameTitle}</span>)
               })}
               <br></br>
-            </div>
-          )}
-          <Button
-            className="pay btn btn-primary"
-            variant="outline-light"
-            onHide={handleClose}
-          >
-            {" "}
             <NavLink className="payLink" to="/cart">
               PAGAR
             </NavLink>
-          </Button>
+            </div>
+          )}
+
         </Offcanvas.Body>
       </Offcanvas>
     </div>

@@ -34,7 +34,6 @@ const navigate = useNavigate();
 export function ItemCart({id,nameItem,img,price, quantity}){
   const {delItemCart} = useContext(CartContext);
 
-
     return(
         <Table striped bordered hover className="tableCart">
             <tr>

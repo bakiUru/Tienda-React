@@ -16,6 +16,7 @@ const CartProvider = ({ children }) => {
       this.img = img;
 
     }
+
   }
 
   //Context - Funciones
@@ -37,7 +38,7 @@ const delItemCart = (id) =>{
   console.log("Despues de borrar Item: ",cart)
   
 }
-
+//Devuelvo la cantidad
 
   //Envio datos al carro
   const addItemsCart = (id, nameItem, quantity, price,img) => {

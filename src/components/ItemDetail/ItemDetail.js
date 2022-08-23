@@ -9,6 +9,7 @@ import "./ItemDetail.css";
 import { NavLink } from "react-router-dom";
 import { CartContext } from "../../Context/CartContext";
 
+
 const srverImg = "https://saeriego.tech/";
 
 export function ItemDetail({
@@ -38,18 +39,24 @@ export function ItemDetail({
     setStockItem(stockItem - cantCart);
   };
 
-  //Chequeo si el producto ya esta en el carro y traigo la cantidadd
-  let set = isInCart(cart, id);
-
+  
+  
   useEffect(() => {
+  //Chequeo si el producto ya esta en el carro y traigo la cantidadd
+    let set = isInCart(cart, id);
     if (set != undefined) {
+      console.log(set)
+      console.log("a la bolsa--->",set.quantity)
       setTotalCart(set.quantity);
-      setItemPrice(price*totalCart);
+      setItemPrice(set.price);
+      console.log("a la totalcart--->",totalCart)
       setPay(!pay);
     }
+
+
+      setItemPrice(price);
+      setStockItem(stock);
     
-    setItemPrice(price);
-    setStockItem(stock);
   }, [stock]);
 
   //actualizo precio
@@ -119,7 +126,7 @@ export function ItemDetail({
                 <ItemCount
                   //Tengo problemas al recibir el stock desde aca
                   stocks={stockItem}
-                  init={totalCart === 0 ? 1 : totalCart}
+                  init={totalCart}
                   onAdd={onAdd}
                   updateStock={updateStock}
                 />

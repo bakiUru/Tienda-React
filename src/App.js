@@ -8,11 +8,11 @@ import { ItemDetailContainer } from "./components/ItemDetailContainer/ItemDetail
 import titleData from "../src/assests/Utils/title.json";
 import { CartPage } from "./Pages/Cart/CartPage";
 import "./App.css";
-import { FilterBtn } from "./components/FilterBtn/FilterBtn";
 import { SaePage } from "./Pages/Sae/SaePage";
 import { ServicesPage } from "./Pages/Services/ServicesPage";
 import { InfoPage } from "./Pages/Info/InfoPage";
 import CartProvider from './Context/CartContext' 
+import {DetailShopPage} from './Pages/DetailShopPage/DetailShopPage'
 
 localStorage.setItem('category','Aspersor,Accesorio,Automatismo,Valvulas,Bombas')
 function App() {
@@ -27,9 +27,14 @@ function App() {
         </header>
         <section className="App-body">
           <Container className="spaceContainer">
-            <FilterBtn/>
+ 
             <Routes>
 
+              <Route
+              extact
+              path="/cart"
+              element={<CartPage/>}
+            />
               <Route
                 extact
                 path="/"
@@ -65,10 +70,10 @@ function App() {
                 path="/category/:categoryId"
                 element={<ItemList/>}
               />
-                            <Route
+              <Route
                 extact
-                path="/cart"
-                element={<CartPage/>}
+                path="compraDetalles/"
+                element={<DetailShopPage />}
               />
 
               <Route
