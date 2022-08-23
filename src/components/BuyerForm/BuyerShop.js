@@ -8,6 +8,11 @@ import { LogUserBtn } from "../LogUserBtn/LogUserBtn";
 import "./BuyerShop.css";
 
 function FormClient() {
+    const[buyer, setBuyer] = useState({})
+
+    const buyerInfo = (event) =>{
+
+    }
   return (
     <Form>
       <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -15,7 +20,7 @@ function FormClient() {
           No estas Logeado... Ingresa los datos para Terminar la Compra
         </Form.Text>
         <Form.Label>Nombre</Form.Label>
-        <Form.Control type="text" placeholder="Nombre..." />
+        <Form.Control type="text" placeholder="Nombre..." onChange={(e)=>console.log(e)}/>
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Email</Form.Label>
