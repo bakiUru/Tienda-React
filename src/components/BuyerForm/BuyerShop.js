@@ -1,64 +1,206 @@
 import Form from "react-bootstrap/Form";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { Container, ModalTitle } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Collapse from "react-bootstrap/Collapse";
+import Image from 'react-bootstrap/Image'
 import { useNavigate } from "react-router-dom";
 import { LogUserBtn } from "../LogUserBtn/LogUserBtn";
+import { CartContext } from "../../Context/CartContext";
 import "./BuyerShop.css";
+import { addDoc, collection,getFirestore, serverTimestamp } from "firebase/firestore";
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+
+const MySwal = withReactContent(Swal)
+
+
+
+
 
 function FormClient() {
-    const[buyer, setBuyer] = useState({})
+  const {cart,totalAmount,cleanCart} = useContext(CartContext);
+  const [cartNow, setCartNow] = useState(cart);
+  const [validated, setValidated] = useState(false);
+  const [buyer, setBuyer] = useState({});
+  const [orderID, setOrderID] = useState()
+  const navigate = useNavigate();
 
-    const buyerInfo = (event) =>{
 
-    }
+
+  //Envio de Datos a Firebase
+  async function sendShop (e){  
+    e.preventDefault()
+    const db = getFirestore()
+    
+    const sellCollection = collection(db, "Sells")
+
+  await addDoc(sellCollection,{
+        buyer,
+        sell: cartNow,
+        total: totalAmount(cartNow),
+        date: serverTimestamp()
+      })
+      .then((res)=>{
+        console.log(res.id)
+        console.log(sellCollection)
+        setOrderID(res.id)
+        Swal.fire({
+          title: `${buyer.name} <br> Su pedido Fue Enviado `,
+          html: '<iframe src="https://embed.lottiefiles.com/animation/91068"></iframe>'+
+          `<h4>Orden Numero: ${res.id}</h4>`,
+          imageAlt: 'Success',
+        })
+        
+      }).catch((err)=>{
+        console.log(err)
+      })
+      
+   
+
+}
+
+  const handleInput = (event)=>{
+    setBuyer({
+      ...buyer,
+      [event.target.name]: event.target.value
+    })
+   }
+
+  const handleSubmit = (event) => {
+
+    const form = event.currentTarget;
+
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    } 
+      //Css de error
+      setValidated(true);
+
+      if (form.checkValidity() === true) {
+      //Desactivo el boton para evitar muchos envios
+      document.getElementById('btnSendShop').setAttribute('disabled',true)
+      document.getElementById('btnSendShop').innerHTML="Enviando..."
+      sendShop(event);
+      setTimeout(()=>{
+      cleanCart()
+      
+    },2000)
+
+  }
+
+  };
+
+
+
   return (
-    <Form>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Text className="text-muted">
-          No estas Logeado... Ingresa los datos para Terminar la Compra
-        </Form.Text>
-        <Form.Label>Nombre</Form.Label>
-        <Form.Control type="text" placeholder="Nombre..." onChange={(e)=>console.log(e)}/>
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Email</Form.Label>
-        <Form.Control type="email" placeholder="Email..." />
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Confirm Email</Form.Label>
-        <Form.Control type="email2" placeholder="Re-Email..." />
-      </Form.Group>
-
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Phone</Form.Label>
-        <Form.Control type="text" placeholder="Phone" />
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicCheckbox">
-        <Form.Check type="checkbox" label="Recibir Ofertas" />
-      </Form.Group>
-      <ClickLogin />
-    </Form>
-  );
+    <Form noValidate validated={validated} onSubmit={handleSubmit}>
+    <Form.Group className="mb-3" controlId="validationCustom01">
+    <Form.Text className="text-muted">
+    No estas Logeado... Ingresa los datos para Terminar la Compra
+    </Form.Text>
+    <Form.Label>Nombre</Form.Label>
+    <Form.Control
+    name="name"
+    required
+    type="text"
+    placeholder="Nombre..."
+    onChange={handleInput}
+    />
+            <Form.Control.Feedback></Form.Control.Feedback>
+            <Form.Control.Feedback type="invalid">
+            Ingrese Un Nombre
+            </Form.Control.Feedback>
+            </Form.Group>
+            <Form.Group
+            className="mb-3"
+            controlId="formBasicEmail, validationCustom02"
+            >
+            <Form.Label>Email</Form.Label>
+            <Form.Control
+          name="email"
+          required
+          type="email"
+          placeholder="Email..."
+          onChange={handleInput}
+          />
+          <Form.Control.Feedback></Form.Control.Feedback>
+          <Form.Control.Feedback type="invalid">
+          Ingrese Email
+          </Form.Control.Feedback>
+          </Form.Group>
+          <Form.Group
+          className="mb-3"
+          controlId="formBasicEmail , validationCustom03"
+          >
+          <Form.Label>Confirm Email</Form.Label>
+          <Form.Control
+          required
+          type="email"
+          placeholder="Re-Email..."
+          />
+          <Form.Control.Feedback type="invalid">
+          Deben Coincidir los Email
+          </Form.Control.Feedback>
+          <Form.Control.Feedback></Form.Control.Feedback>
+          </Form.Group>
+        <Form.Group className="mb-3" controlId="validationCustom04">
+        <Form.Label>Teléfono</Form.Label>
+        <Form.Control
+        name="phone"
+        required
+        type="text"
+        placeholder="Phone"
+        onChange={handleInput}
+        />
+            <Form.Control.Feedback></Form.Control.Feedback>
+            </Form.Group>
+            <Form.Group className="mb-3">
+            <Form.Check type="checkbox" label="Recibir Ofertas" />
+            </Form.Group>
+            <Container className="sendCtn">
+            <Button variant="warning" type="submit" id="btnSendShop">
+            Enviar Compra
+   
+            </Button>
+            </Container>
+            </Form>
+           
+          );
 }
 
 function BuyerForm({ show, onHide }) {
-const navigate = useNavigate();
+
   return (
     <>
       <Modal show={show} onHide={onHide} backdrop="static" keyboard={false}>
         <Modal.Header closeButton></Modal.Header>
-        <Modal.Body>
-          <FormClient />
-        </Modal.Body>
+
         <Modal.Footer>
-          <Button variant="secondary" onClick={onHide}>
-            Cancelar Compra
-          </Button>
-          <Button variant="warning" type="submit" onClick={()=>navigate(`/compraDetalles/`)}>
-            Enviar Compra
-          </Button>
+          <Modal.Body>
+
+            
+            <FormClient/>
+          
+          </Modal.Body>
+          <Container className="logInCtn">
+            <ClickLogin />
+          </Container>
+        </Modal.Footer>
+
+        <Modal.Footer>
+          <Container>
+            <Button
+              className="cancelBtn"
+              variant="outline-danger"
+              size="sm"
+              onClick={onHide}
+            >
+              Cancelar Compra
+            </Button>
+          </Container>
         </Modal.Footer>
       </Modal>
     </>
@@ -71,7 +213,6 @@ function ClickLogin() {
   return (
     <>
       <Button
-        className="logInBtn"
         onClick={() => setOpen(!open)}
         aria-controls="example-collapse-text"
         aria-expanded={open}
@@ -89,6 +230,7 @@ function ClickLogin() {
 
 export function BuyerShop() {
   const [modalShow, setModalShow] = useState(false);
+
   return (
     <>
       <Button

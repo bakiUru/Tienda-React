@@ -24,8 +24,6 @@ export function ItemList({ ItemTitle, countCart }) {
   const [listItem, setListItem] = useState([]);
   const [loading, setLoading] = useState(false);
   const { categoryId } = useParams();
-  
-  
   const navigate = useNavigate();
   
   useEffect(() => {

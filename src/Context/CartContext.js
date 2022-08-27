@@ -42,7 +42,7 @@ const delItemCart = (id) =>{
 
   //Envio datos al carro
   const addItemsCart = (id, nameItem, quantity, price,img) => {
-    let newItem = new CartShopItem(id, nameItem, quantity, price,img);
+    const newItem = {id: id, nameItem: nameItem, quantity: quantity, price:price,img:img};
 
     //Si no esta vacio el Carro ->Buscar elemento
     if (cart.length != 0) {

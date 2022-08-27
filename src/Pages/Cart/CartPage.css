@@ -7,3 +7,13 @@ h1{
     color: white;
 }
 
+.btn.btn-primarySucces{
+    background-color:#157347;
+    border-color:#146c43;
+    color: white;
+}
+
+.btnCnt{
+    padding: 2rem;
+    text-align: center;
+}

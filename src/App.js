@@ -12,7 +12,7 @@ import { SaePage } from "./Pages/Sae/SaePage";
 import { ServicesPage } from "./Pages/Services/ServicesPage";
 import { InfoPage } from "./Pages/Info/InfoPage";
 import CartProvider from './Context/CartContext' 
-import {DetailShopPage} from './Pages/DetailShopPage/DetailShopPage'
+import {CheckOut} from './Pages/CheckOut/CheckOut'
 
 localStorage.setItem('category','Aspersor,Accesorio,Automatismo,Valvulas,Bombas')
 function App() {
@@ -72,8 +72,8 @@ function App() {
               />
               <Route
                 extact
-                path="compraDetalles/"
-                element={<DetailShopPage />}
+                path="CheckOut"
+                element={<CheckOut />}
               />
 
               <Route

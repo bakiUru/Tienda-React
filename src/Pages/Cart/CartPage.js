@@ -9,12 +9,14 @@ import Button from "react-bootstrap/Button";
 
 import "./CartPage.css";
 import { BuyerShop } from "../../components/BuyerForm/BuyerShop";
-
+//Realizar loggin control con un context
+const Log = false;
 export function CartPage() {
   const { cart, totalAmount, cleanCart, cantItemInCart } = useContext(
     CartContext
-  );
-
+    );
+    
+    
   const [cartNow, setCartNow] = useState(cart);
   const [totalPrice, setTotalPrice] = useState(0);
 
@@ -84,18 +86,32 @@ export function CartPage() {
             </Table>
           </Container>
           <Container>
+            <Container className="btnCnt">
+            {Log ?         
+            <>
+            
+            <NavLink className="btn btn-primarySucces" variant="warning" to="/CheckOut" >
+              Terminar Compra
+            </NavLink>
+            <br></br>  
+            </>
+            :
+            <>
             <BuyerShop/>
-            {"                                      "}
-            <Button variant="danger" onClick={cleanCart}>
-              Vaciar Carro
-            </Button>
-
-            <br></br>
-            <br></br>
+            <br></br>  
+            </>
+            }
+        
             <br></br>
             <NavLink to="/items" className="btn btn-primary ">
               SEGUIR COMPRANDO
             </NavLink>
+            <br></br>
+            <br></br>
+            <Button variant="danger" size="sm" onClick={cleanCart}>
+              Vaciar Carro
+            </Button>
+            </Container>
           </Container>
         </>
       )}
