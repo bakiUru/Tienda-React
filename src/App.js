@@ -72,7 +72,7 @@ function App() {
               />
               <Route
                 extact
-                path="CheckOut"
+                path="/CheckOut/:orderId"
                 element={<CheckOut />}
               />
 

@@ -14,7 +14,7 @@ export function Item({id, nameTitle,description,price,imgSrc, gotoItem}) {
   return (
   
       <Card style={{ width: "18rem" , overflow:"hidden"}}>
-        <Card.Img className='imgItem' variant="top" src={srverImg+imgSrc} alt={IMGS.imgHunter.name} onClick={gotoItem}/>
+        <Card.Img className='imgItem' variant="top" src={srverImg+imgSrc} alt={nameTitle} onClick={gotoItem}/>
         <Card.Body>
           <Card.Title>{nameTitle}</Card.Title>   
         <hr></hr>

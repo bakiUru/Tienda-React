@@ -19,8 +19,8 @@ export function CartWidget() {
   const handleShow = () => setShow(true);
 
   useEffect(() => {
-    //Desactivo btn de suma al limite de STOCK
-  }, [cantItemInCart]);
+
+  }, [cartNow]);
 
   return (
     <div>
