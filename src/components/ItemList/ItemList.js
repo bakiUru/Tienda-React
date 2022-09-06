@@ -101,7 +101,7 @@ export function ItemList({ ItemTitle, countCart }) {
           <FilterBtn />
           <br></br>
           <br></br>
-          {listItem.length == 0 && search != "" ? (
+          {listItem.length === 0 && search !== "" ? (
             <>
               <h1>No encontramos productos... </h1>
 
