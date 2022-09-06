@@ -11,81 +11,64 @@ import "./App.css";
 import { SaePage } from "./Pages/Sae/SaePage";
 import { ServicesPage } from "./Pages/Services/ServicesPage";
 import { InfoPage } from "./Pages/Info/InfoPage";
-import CartProvider from './Context/CartContext' 
-import {CheckOut} from './Pages/CheckOut/CheckOut'
+import CartProvider from "./Context/CartContext";
+import { CheckOut } from "./Pages/CheckOut/CheckOut";
 
-localStorage.setItem('category','Aspersor,Accesorio,Automatismo,Valvulas,Bombas')
+localStorage.setItem(
+  "category",
+  "Aspersor,Accesorio,Automatismo,Valvulas,Bombas"
+);
 function App() {
-
-
   return (
     <BrowserRouter>
-    <CartProvider >
-      <div className="App">
-        <header className="App-header">
-          <NavBar />
-        </header>
-        <section className="App-body">
-          <Container className="spaceContainer">
- 
-            <Routes>
+      <CartProvider>
+        <div className="App">
+          <header className="App-header">
+            <NavBar />
+          </header>
+          <section className="App-body">
+            <Container className="spaceContainer">
+              <Routes>
+                <Route extact path="/cart" element={<CartPage />} />
+                <Route
+                  extact
+                  path="/"
+                  element={<ItemList ItemTitle={titleData.titles.items} />}
+                />
+                <Route extact path="/sae" element={<SaePage />} />
+                <Route extact path="/info" element={<InfoPage />} />
+                <Route extact path="/service" element={<ServicesPage />} />
+                <Route
+                  extact
+                  path="/items"
+                  element={<ItemList ItemTitle={titleData.titles.items} />}
+                />
+                <Route
+                  extact
+                  path="/detalles/:itemId"
+                  element={<ItemDetailContainer />}
+                />
+                <Route
+                  extact
+                  path="/category/:categoryId"
+                  element={<ItemList />}
+                />
+                <Route extact path="/search/:search" element={<ItemList />} />
+                <Route
+                  extact
+                  path="/CheckOut/:orderId"
+                  element={<CheckOut />}
+                />
 
-              <Route
-              extact
-              path="/cart"
-              element={<CartPage/>}
-            />
-              <Route
-                extact
-                path="/"
-                element={<ItemList ItemTitle={titleData.titles.items} />}
-              />
-              <Route
-                extact
-                path="/sae"
-                element={<SaePage/>}
-              />
-              <Route
-                extact
-                path="/info"
-                element={<InfoPage />}
-              />
-              <Route
-                extact
-                path="/service"
-                element={<ServicesPage  />}
-              />
-              <Route
-                extact
-                path="/items"
-                element={<ItemList ItemTitle={titleData.titles.items} />}
-              />
-              <Route
-                extact
-                path="/detalles/:itemId"
-                element={<ItemDetailContainer/>}
-              />
-              <Route
-                extact
-                path="/category/:categoryId"
-                element={<ItemList/>}
-              />
-              <Route
-                extact
-                path="/CheckOut/:orderId"
-                element={<CheckOut />}
-              />
-
-              <Route
-                exact
-                path="*"
-                element={<ItemList ItemTitle={titleData.titles.top} />}
-              />
-      
-            </Routes>
-          </Container>
-        </section>
-      </div>
+                <Route
+                  exact
+                  path="*"
+                  element={<ItemList ItemTitle={titleData.titles.top} />}
+                />
+              </Routes>
+            </Container>
+          </section>
+        </div>
       </CartProvider>
     </BrowserRouter>
   );

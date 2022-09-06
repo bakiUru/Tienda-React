@@ -1,23 +1,24 @@
-.cartBtn{
-    margin-right: 0.7rem;
+.cartBtn {
+  margin-right: 0.7rem;
 }
-.cartIcon{
-    width: 25px;
-    height: 25px;
-    
-}
-
-.payLink{
-    color: white!important;
-    text-decoration: none!important;
+.cartIcon {
+  width: 25px;
+  height: 25px;
 }
 
-.pay.btn.btn-primary.btn.btn-outline-light:hover{
-background-color: #198754;
+.payLink {
+  color: white !important;
+  text-decoration: none !important;
+  padding: 0.7rem;
+  border-radius: 20%;
+  background-color: #198754;
 }
 
-.payLink:hover{
-    color: rgb(255, 255, 255)!important;
-    text-decoration: none!important;
-    
+.payLink:hover {
+  background-color: #074729;
+}
+
+.payLink:hover {
+  color: rgb(255, 255, 255) !important;
+  text-decoration: none !important;
 }

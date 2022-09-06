@@ -1,7 +1,6 @@
-import React from 'react';
+import React from "react";
 import Button from "react-bootstrap/Button";
-import './LogUserBtn.css';
-
+import "./LogUserBtn.css";
 
 export function LogUserBtn() {
   return (
@@ -12,7 +11,7 @@ export function LogUserBtn() {
         </Button>{" "}
         <Button variant="outline-warning" size="sm">
           Sing Up
-        </Button>{" "}       
+        </Button>{" "}
       </div>
     </>
   );

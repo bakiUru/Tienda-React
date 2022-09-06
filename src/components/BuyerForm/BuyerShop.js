@@ -1,6 +1,6 @@
 import Form from "react-bootstrap/Form";
 import React, { useState, useContext } from "react";
-import { Container, ModalTitle } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Collapse from "react-bootstrap/Collapse";
@@ -18,10 +18,10 @@ import Swal from "sweetalert2";
 
 function FormClient() {
   const { cart, totalAmount, cleanCart } = useContext(CartContext);
-  const [cartNow, setCartNow] = useState(cart);
+  const [cartNow] = useState(cart);
   const [validated, setValidated] = useState(false);
   const [buyer, setBuyer] = useState({});
-  const [orderID, setOrderID] = useState();
+  const [orderId, setOrderID] = useState();
   const navigate = useNavigate();
 
   //Envio de Datos a Firebase
@@ -38,8 +38,6 @@ function FormClient() {
       date: serverTimestamp(),
     })
       .then((res) => {
-        console.log(res.id);
-        console.log(sellCollection);
         setOrderID(res.id);
         Swal.fire({
           title: `${buyer.name} <br> Su pedido Fue Enviado `,
@@ -52,7 +50,7 @@ function FormClient() {
         navigate(`/CheckOut/${res.id}`);
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err.message);
       });
   }
 
@@ -63,23 +61,20 @@ function FormClient() {
     });
   };
 
-
-
   const handleSubmit = (event) => {
     const form = event.currentTarget;
 
     //Control de mail
-    
+
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
     }
     //Css de error
     setValidated(true);
- 
+
     //Si todo esta Ok Enviamos la Compra
     if (form.checkValidity() === true) {
-
       //Desactivo el boton para evitar muchos envios
       document.getElementById("btnSendShop").setAttribute("disabled", true);
       document.getElementById("btnSendShop").innerHTML = "Enviando...";
@@ -92,7 +87,7 @@ function FormClient() {
 
   return (
     <Form noValidate validated={validated} onSubmit={handleSubmit}>
-      <Form.Group className="mb-3" >
+      <Form.Group className="mb-3">
         <Form.Text className="text-muted">
           No estas Logeado... Ingresa los datos para Terminar la Compra
         </Form.Text>
@@ -109,10 +104,7 @@ function FormClient() {
           Ingrese Un Nombre
         </Form.Control.Feedback>
       </Form.Group>
-      <Form.Group
-        className="mb-3"
-  
-      >
+      <Form.Group className="mb-3">
         <Form.Label>Email</Form.Label>
         <Form.Control
           name="email"
@@ -126,23 +118,21 @@ function FormClient() {
           Ingrese Email
         </Form.Control.Feedback>
       </Form.Group>
-      <Form.Group
-        className="mb-3"
-      
-      >
+      <Form.Group className="mb-3">
         <Form.Label>Confirm Email</Form.Label>
-        <Form.Control 
-        required  pattern={buyer.email}
-        id="reEmail" 
-        type="email"  
-        placeholder="Re-Email..."
+        <Form.Control
+          required
+          pattern={buyer.email}
+          id="reEmail"
+          type="email"
+          placeholder="Re-Email..."
         />
         <Form.Control.Feedback type="invalid">
           Deben Coincidir los Email
         </Form.Control.Feedback>
         <Form.Control.Feedback></Form.Control.Feedback>
       </Form.Group>
-      <Form.Group className="mb-3" >
+      <Form.Group className="mb-3">
         <Form.Label>Teléfono</Form.Label>
         <Form.Control
           name="phone"

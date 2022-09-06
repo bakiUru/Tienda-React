@@ -10,12 +10,11 @@ import "./ItemCount.css";
 //Ultima Actualizacion, diferenciacion de componentes para cada producto añadiendo
 //id del item al id del componente
 
-export function ItemCount({ onAdd, init,stocks}) {
+export function ItemCount({ onAdd, init, stocks }) {
   //HOOKS
   const [show, setShow] = useState(false);
   const target = useRef(null);
   const [count, setCount] = useState(init);
-
 
   useEffect(() => {
     //Desactivo butn de resta y Agregar Carrito
@@ -34,8 +33,7 @@ export function ItemCount({ onAdd, init,stocks}) {
     //Desactivo btn de suma al limite de STOCK
     if (count === stocks || stocks === 0)
       document.getElementById("addBtn").toggleAttribute("disabled", true);
-    else
-      document.getElementById("addBtn").toggleAttribute("disabled", false);
+    else document.getElementById("addBtn").toggleAttribute("disabled", false);
   }, [count]);
 
   //Limpio el Efecto del tooltip
@@ -68,17 +66,15 @@ export function ItemCount({ onAdd, init,stocks}) {
     onAdd(count);
   };
 
-
-
   return (
     <Container className="contBtn" ref={target}>
       <Button
-        id={"addBtn"}
+        id={"remBtn"}
         variant="primary"
         className="bagBtn"
-        onClick={addBag}
+        onClick={remBag}
       >
-        +
+        -
       </Button>
       <Button className="bagBtn" variant="outline-light" onClick={delBag}>
         <BsBagFill className="cartIcon" />
@@ -87,12 +83,12 @@ export function ItemCount({ onAdd, init,stocks}) {
         </Badge>
       </Button>
       <Button
-        id={"remBtn"}
+        id={"addBtn"}
         variant="primary"
         className="bagBtn"
-        onClick={remBag}
+        onClick={addBag}
       >
-        -
+        +
       </Button>
 
       <Overlay target={target.current} show={show} placement="right">
@@ -102,7 +98,7 @@ export function ItemCount({ onAdd, init,stocks}) {
           </Tooltip>
         )}
       </Overlay>
-      
+
       <Button
         id={"bagBtnAddCart"}
         variant="primary"

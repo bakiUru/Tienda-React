@@ -1,32 +1,32 @@
-hr{
-    border: 3px solid #666; 
-    border-radius: 300px/10px; 
-    height: 0px; text-align: center;
+hr {
+  border: 3px solid #666;
+  border-radius: 300px/10px;
+  height: 0px;
+  text-align: center;
 }
-.imgItem{
-    transition: transform 1s ease;
+.imgItem {
+  transition: transform 1s ease;
 }
-.imgItem:hover{
-    cursor: pointer;
-    transform: scale(1.02);
-    animation: animate 2s linear ;
-    
+.imgItem:hover {
+  cursor: pointer;
+  transform: scale(1.02);
+  animation: animate 2s linear;
 }
 
 @keyframes animate {
-    0% {
-        filter: blur(0);
-    }
+  0% {
+    filter: blur(0);
+  }
 
-    40% {
-        filter: blur(1px);
-    }
+  40% {
+    filter: blur(1px);
+  }
 
-    80% {
-        filter: blur(0);
-    }
+  80% {
+    filter: blur(0);
+  }
 
-    100% {
-        filter: blur(0);
-    }
+  100% {
+    filter: blur(0);
+  }
 }

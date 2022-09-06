@@ -1,19 +1,59 @@
-h1{
-    color: white;
+h1 {
+  color: white;
 }
 
-.btn.btn-primarygoShop{
-    background-color: rgb(151, 26, 26);
-    color: white;
+.btn.btn-primarygoShop {
+  background-color: rgb(151, 26, 26);
+  color: white;
 }
 
-.btn.btn-primarySucces{
-    background-color:#157347;
-    border-color:#146c43;
-    color: white;
+.btn.btn-primarySucces {
+  background-color: #157347;
+  border-color: #146c43;
+  color: white;
 }
 
-.btnCnt{
-    padding: 2rem;
-    text-align: center;
+.btnCnt {
+  padding: 2rem;
+  text-align: center;
+}
+
+img {
+  border-radius: 20%;
+}
+
+.titleTB {
+  color: rgb(0, 0, 0);
+}
+
+td {
+  padding: 0.5rem;
+}
+.contTable.container {
+  padding: 2rem;
+  border-radius: 5%;
+  background: #1c87bb;
+  background: radial-gradient(
+    circle farthest-corner at center center,
+    #1c87bb 0%,
+    #2b3565 80%
+  );
+  background: -webkit-radial-gradient(
+    circle farthest-corner at center center,
+    #1c87bb 0%,
+    #2b3565 80%
+  );
+  background: -moz-radial-gradient(
+    circle farthest-corner at center center,
+    #1c87bb 0%,
+    #2b3565 80%
+  );
+}
+
+.contTable.container {
+  font-size: 20px;
+}
+
+.totalPrice {
+  font-size: 25px;
 }

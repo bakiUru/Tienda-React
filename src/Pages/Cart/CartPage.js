@@ -14,15 +14,14 @@ const Log = false;
 export function CartPage() {
   const { cart, totalAmount, cleanCart, cantItemInCart } = useContext(
     CartContext
-    );
-    
-    
+  );
+
   const [cartNow, setCartNow] = useState(cart);
   const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
     setTotalPrice(totalAmount(cartNow));
-    if (cantItemInCart == 0) {
+    if (cantItemInCart === 0) {
       setCartNow([]);
       setTotalPrice(0);
     }
@@ -34,7 +33,7 @@ export function CartPage() {
 
   return (
     <>
-      {cantItemInCart == 0 ? (
+      {cantItemInCart === 0 ? (
         <>
           <h1>No hay Items en Tu Carro</h1>
 
@@ -52,7 +51,10 @@ export function CartPage() {
                   width={"500vh"}
                   height={"500vh"}
                   src="https://embed.lottiefiles.com/animation/86046"
-                ></iframe>
+                  title="Success Shop"
+                >
+                  {" "}
+                </iframe>
               </Col>
               <Col></Col>
             </Row>
@@ -64,8 +66,8 @@ export function CartPage() {
           <Container className="contTable">
             <Table className="tableCart">
               <thead>
-                <tr>
-                  <th>Item</th>
+                <tr className="titleTB">
+                  <th></th>
                   <th className="unitItem">Unidades</th>
                   <th className="tot">Total</th>
                 </tr>
@@ -80,37 +82,40 @@ export function CartPage() {
                   <h5>TOTAL</h5>
                 </th>
                 <th>
-                  <h5>$ {totalPrice}</h5>
+                  <h5 className="totalPrice">$ {totalPrice}</h5>
                 </th>
               </tr>
             </Table>
           </Container>
           <Container>
             <Container className="btnCnt">
-            {Log ?         
-            <>
-            
-            <NavLink className="btn btn-primarySucces" variant="warning" to="/CheckOut" >
-              Terminar Compra
-            </NavLink>
-            <br></br>  
-            </>
-            :
-            <>
-            <BuyerShop/>
-            <br></br>  
-            </>
-            }
-        
-            <br></br>
-            <NavLink to="/items" className="btn btn-primary ">
-              SEGUIR COMPRANDO
-            </NavLink>
-            <br></br>
-            <br></br>
-            <Button variant="danger" size="sm" onClick={cleanCart}>
-              Vaciar Carro
-            </Button>
+              {Log ? (
+                <>
+                  <NavLink
+                    className="btn btn-primarySucces"
+                    variant="warning"
+                    to="/CheckOut"
+                  >
+                    Terminar Compra
+                  </NavLink>
+                  <br></br>
+                </>
+              ) : (
+                <>
+                  <BuyerShop />
+                  <br></br>
+                </>
+              )}
+
+              <br></br>
+              <NavLink to="/items" className="btn btn-primary ">
+                SEGUIR COMPRANDO
+              </NavLink>
+              <br></br>
+              <br></br>
+              <Button variant="danger" size="sm" onClick={cleanCart}>
+                Vaciar Carro
+              </Button>
             </Container>
           </Container>
         </>

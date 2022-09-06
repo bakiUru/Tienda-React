@@ -1,4 +1,3 @@
-import e from "cors";
 import React, { createContext, useState } from "react";
 
 export const CartContext = createContext([]);
@@ -6,20 +5,9 @@ export const CartContext = createContext([]);
 const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
 
-  //Clase de objeto de Compra
-  class CartShopItem {
-    constructor(id, nameItem, quantity, price, img) {
-      this.id = id;
-      this.nameItem = nameItem;
-      this.quantity = quantity;
-      this.price = price * quantity;
-      this.img = img;
-    }
-  }
-
   //Context - Funciones
   const isInCart = (cart, id) => {
-    return cart.find((item) => item.id == id);
+    return cart.find((item) => item.id === id);
   };
 
   const totalAmount = (cart) => {
@@ -29,12 +17,8 @@ const CartProvider = ({ children }) => {
 
   //Borro Item del Carro
   const delItemCart = (id) => {
-    console.log("borrando");
-
-    setCart(cart.filter((item) => item.id != id));
-    console.log("Despues de borrar Item: ", cart);
+    setCart(cart.filter((item) => item.id !== id));
   };
-  //Devuelvo la cantidad
 
   //Envio datos al carro
   const addItemsCart = (id, nameItem, quantity, price, img) => {
@@ -47,22 +31,19 @@ const CartProvider = ({ children }) => {
     };
 
     //Si no esta vacio el Carro ->Buscar elemento
-    if (cart.length != 0) {
+    if (cart.length !== 0) {
       //Encuentra y modifica cantidad
       if (isInCart(cart, id)) {
         setCart(
           cart.map((item) =>
-            item.id == id
+            item.id === id
               ? { ...item, quantity: newItem.quantity, price: price * quantity }
               : item
           )
         );
       }
       //No encuentra Agrega uno nuevo
-      else {
-        setCart([...cart, { ...newItem }]);
-        console.log("Nuevo item al Carro.");
-      }
+      else setCart([...cart, { ...newItem }]);
     }
     //Si esta Vacio Crea El primer Elemento
     else setCart([newItem]);

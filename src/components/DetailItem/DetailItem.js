@@ -1,10 +1,10 @@
-import React, {useState} from 'react';
+import React, { useState } from "react";
 
 import Container from "react-bootstrap/esm/Container";
 import Button from "react-bootstrap/esm/Button";
-import Modal from 'react-bootstrap/Modal';
-import { NavLink } from 'react-router-dom';
-import './DetailItem.css'
+import Modal from "react-bootstrap/Modal";
+import { NavLink } from "react-router-dom";
+import "./DetailItem.css";
 
 function DetailModal(props) {
   return (
@@ -16,44 +16,46 @@ function DetailModal(props) {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          {props.nameTitle}
+          {props.nametitle}
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <h4>Detalle del Producto</h4>
-        <p>
-          {props.description}
-        </p>
+        <p>{props.description}</p>
       </Modal.Body>
       <Modal.Footer>
-        <NavLink to={`/detalles/${props.id}`}  className='btn btn-primary'>Ver Producto
+        <NavLink to={`/detalles/${props.id}`} className="btn btn-primary">
+          Ver Producto
         </NavLink>
         <Button onClick={props.onHide}>Cerrar</Button>
-        
-    
       </Modal.Footer>
     </Modal>
   );
 }
 
-export function DetailItem({nameTitle , description, id}){
-    const [modalShow, setModalShow] = useState(false);
+export function DetailItem({ nametitle, description, id }) {
+  const [modalShow, setModalShow] = useState(false);
 
-    return (
-        <>
-    
-        <Container className='contDtl'>
-                    <Button id="detailBtn" variant="primary" className="detailBtn" onClick={() => setModalShow(true)}>Detalles</Button>
+  return (
+    <>
+      <Container className="contDtl">
+        <Button
+          id="detailBtn"
+          variant="primary"
+          className="detailBtn"
+          onClick={() => setModalShow(true)}
+        >
+          Detalles
+        </Button>
+      </Container>
 
-        </Container>
-
-        <DetailModal 
+      <DetailModal
         id={id}
-        nameTitle={nameTitle}
+        nametitle={nametitle}
         description={description}
         show={modalShow}
         onHide={() => setModalShow(false)}
-        />
-        </>
-    );
+      />
+    </>
+  );
 }

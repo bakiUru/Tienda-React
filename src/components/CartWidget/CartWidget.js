@@ -6,21 +6,14 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 import "./CartWidget.css";
 import { NavLink } from "react-router-dom";
 import { CartContext } from "../../Context/CartContext";
-
+import { ItemCartWidget } from "../ItemCart/ItemCartWidget";
 export function CartWidget() {
-  const { cantItemInCart, cart} = useContext(CartContext);
-
+  const { cantItemInCart, cart } = useContext(CartContext);
   const [show, setShow] = useState(false);
-  const [cartNow, setCartNow] = useState(cart);
-
-
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  useEffect(() => {
-
-  }, [cartNow]);
+  useEffect(() => {}, [cantItemInCart]);
 
   return (
     <div>
@@ -36,34 +29,39 @@ export function CartWidget() {
         </Offcanvas.Header>
         <Offcanvas.Body>
           <h5>Lista de los Productos</h5>
-          {cantItemInCart == 0 ? (
+          {cantItemInCart === 0 ? (
             <div>
               <span>
                 <br></br>
-               <h6>No hay Items en El carro</h6>
+                <h6>No hay Items en El carro</h6>
               </span>
               <br></br>
               <br></br>
-              <NavLink to="/items"  className="btn btn-primarygoShop ">
-                  Ir de Compras
-               </NavLink>
+              <NavLink to="/items" className="btn btn-primarygoShop ">
+                Ir de Compras
+              </NavLink>
             </div>
           ) : (
             <div>
               <br></br>
               <span>Tus Articulos:</span>
-              <br></br>
-              {console.log(cartNow)}
-              {cartNow.map(item =>{
-                return (<span>{item.nameTitle}</span>)
+              {cart.map((item) => {
+                return (
+                  <ItemCartWidget
+                    key={item.id}
+                    nameItem={item.nameItem}
+                    img={item.img}
+                    price={item.price}
+                  ></ItemCartWidget>
+                );
               })}
               <br></br>
-            <NavLink className="payLink" to="/cart">
-              PAGAR
-            </NavLink>
+              <br></br>
+              <NavLink className="payLink" to="/cart">
+                PAGAR
+              </NavLink>
             </div>
           )}
-
         </Offcanvas.Body>
       </Offcanvas>
     </div>

@@ -1,22 +1,22 @@
-.contTable{
-    background-color: white;
+.contTable {
+  background-color: white;
 }
-.tableCart{
-    background-color: white;
-    text-align: center;
+.tableCart {
+  background-color: white;
+  text-align: center;
 }
-.numItem{
-    width: 20px;
+.numItem {
+  width: 20px;
 }
-.unitItem{
-    width: 20px;
+.unitItem {
+  width: 20px;
 }
-.tot{
-    width: 100px;
-    text-align: end;
+.tot {
+  width: 100px;
+  text-align: end;
 }
 
-.itemRow{
-    width: 88%;
-    text-align: justify;
+.itemRow {
+  width: 88%;
+  text-align: justify;
 }

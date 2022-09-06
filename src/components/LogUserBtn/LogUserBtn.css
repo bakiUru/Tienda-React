@@ -1,13 +1,12 @@
 .logBtn {
-    display: grid;
-    row-gap: 10px;
-    margin: 0.5rem 0 0.5rem 1.5rem;
+  display: grid;
+  row-gap: 10px;
+  margin: 0.5rem 0 0.5rem 1.5rem;
 }
 
-
 @media only screen and (max-width: 990px) {
-    .logBtn {
-        margin: 0;
-        padding-top: 1.5rem;
-    }
+  .logBtn {
+    margin: 0;
+    padding-top: 1.5rem;
+  }
 }

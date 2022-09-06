@@ -9,7 +9,6 @@ import "./ItemDetail.css";
 import { NavLink } from "react-router-dom";
 import { CartContext } from "../../Context/CartContext";
 
-
 const srverImg = "https://saeriego.tech/";
 
 export function ItemDetail({
@@ -39,24 +38,17 @@ export function ItemDetail({
     setStockItem(stockItem - cantCart);
   };
 
-  
-  
   useEffect(() => {
-  //Chequeo si el producto ya esta en el carro y traigo la cantidadd
+    //Chequeo si el producto ya esta en el carro y traigo la cantidadd
     let set = isInCart(cart, id);
-    if (set != undefined) {
-      console.log(set)
-      console.log("a la bolsa--->",set.quantity)
+    if (set !== undefined) {
       setTotalCart(set.quantity);
       setItemPrice(set.price);
-      console.log("a la totalcart--->",totalCart)
       setPay(!pay);
     }
 
-
-      setItemPrice(price);
-      setStockItem(stock);
-    
+    setItemPrice(price);
+    setStockItem(stock);
   }, [stock]);
 
   //actualizo precio
@@ -73,8 +65,7 @@ export function ItemDetail({
     setCantCart(0);
     updateStock();
     setTotalCart(totalCart + cantCart);
-    
-    
+
     if (totalCart > 0) {
       setPay(!pay);
       addItemsCart(id, nameTitle, totalCart, price, imgSrc);

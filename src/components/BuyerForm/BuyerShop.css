@@ -1,20 +1,18 @@
-.finishBtn{
-    padding: 5px;
+.finishBtn {
+  padding: 5px;
 }
-.sendCtn{
-    text-align: end;
-}
-
-.logInCtn{
-    text-align: center;
+.sendCtn {
+  text-align: end;
 }
 
-.cancelBtn{
-    text-align: center;
+.logInCtn {
+  text-align: center;
+}
+
+.cancelBtn {
+  text-align: center;
 }
 
 .swal2-styled.swal2-confirm {
-
-    background-color: #062855!important;
-
+  background-color: #062855 !important;
 }
